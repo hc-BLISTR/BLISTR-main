@@ -1,0 +1,5950 @@
+
+    {% extends "base.html" %}
+    
+    {% block content %}
+    <title>Genomes</title>
+    <form action="" method="POST" name="result">
+    {{ form.hidden_tag() }}
+    
+    <script language="JavaScript">
+    function toggle(source) {
+      checkboxes = document.getElementsByName('check');
+      for(var i=0, n=checkboxes.length;i<n;i++) {
+        checkboxes[i].checked = source.checked;
+      }
+    }
+    </script>
+    
+    <div class=page>
+      <h1>{{ title }}</h1>
+      <input type=submit value=Download>
+      <font size="4">
+      Contig File: {{ form.contig }}<span style="margin-left:1em">
+      Toxin File: {{ form.toxin }}<span style="margin-left:1em">
+      Toxin++ File: {{ form.toxin_extra }}<span style="margin-left:1em">
+      Genome faa: {{ form.fasta_faa }}<span style="margin-left:1em">
+      Genome ffn: {{ form.fasta_ffn }}<span style="margin-left:1em">
+      Toxin++ faa: {{ form.toxin_faa }}<span style="margin-left:1em">
+      Toxin++ ffn: {{ form.toxin_ffn }}<span style="margin-left:1em">
+      16S Sequence: {{ form.sixteenS }}<span style="margin-left:1em">
+      Select All Genomes: <input type="checkbox" onClick="toggle(this)" />
+      <br>
+      {{ form.tree_16S }}
+      <br>
+      {{ form.delete }}
+      <br>
+      {{ form.export }}
+      <br>
+      Search For: {{ form.search(size=30, maxlength=400) }}
+      </font>
+      <input type=submit value=Search>
+      <table border="1" class="sortable">
+  <thead>
+    <tr style="text-align: center;">
+      <th></th>
+      <th>Genome name</th>
+      <th>Collection date</th>
+      <th>Source type</th>
+      <th>Source information</th>
+      <th>Institution</th>
+      <th>Author</th>
+      <th>Coding Genes</th>
+      <th>ORFs</th>
+      <th>Toxin</th>
+      <th>BoNT Cassette</th>
+      <th>SubType</th>
+      <th>bp before toxin</th>
+      <th>bp after toxin</th>
+      <th>Toxin++ protein figure</th>
+      <th>Lat/Long</th>
+      <th>Country</th>
+      <th>Region</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th><input type=checkbox name=check value=1></th>
+      <td>CA9708E1</td>
+      <td>1997</td>
+      <td>Clinical</td>
+      <td>Caribou</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3411</td>
+      <td>3500</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>9276</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='CA9708E1.bmp') }}">View</a></td>
+      <td>61.122/-94.01</td>
+      <td>Canada</td>
+      <td>Arviat (West Hudson Bay) - Nunavut</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=2></th>
+      <td>ATCC-449</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>None</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3458</td>
+      <td>3526</td>
+      <td>A</td>
+      <td>HA: 70, 17, 33</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='ATCC-449.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=3></th>
+      <td>DB2</td>
+      <td>1968</td>
+      <td>Clinical</td>
+      <td>Sediment</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3579</td>
+      <td>3650</td>
+      <td>B</td>
+      <td>HA: 33, 17, 70</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='DB2.bmp') }}">View</a></td>
+      <td>41.866/-123.3</td>
+      <td>USA</td>
+      <td>Pacific Coast</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=4></th>
+      <td>ME1010E1JL</td>
+      <td>2010</td>
+      <td>Clinical</td>
+      <td>Meat</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3305</td>
+      <td>3396</td>
+      <td>E</td>
+      <td>None</td>
+      <td>None</td>
+      <td>1657</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='ME1010E1JL.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=5></th>
+      <td>SU0729</td>
+      <td>1987</td>
+      <td>Clinical</td>
+      <td>soil</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3622</td>
+      <td>3681</td>
+      <td>A</td>
+      <td>ORF: X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SU0729.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=6></th>
+      <td>FWSK02-06E2</td>
+      <td>2004</td>
+      <td>Clinical</td>
+      <td>Freshwater Sediment</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3328</td>
+      <td>3404</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='FWSK02-06E2.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=7></th>
+      <td>SU1169</td>
+      <td>1998</td>
+      <td>Clinical</td>
+      <td>soil</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>4336</td>
+      <td>4414</td>
+      <td>A</td>
+      <td>ORF: X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SU1169.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=8></th>
+      <td>CJ4-1</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>3595</td>
+      <td>3704</td>
+      <td>A</td>
+      <td>ORF: X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='CJ4-1.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=9></th>
+      <td>SOKR-23E3</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Marine Sediment</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3635</td>
+      <td>3735</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>9272</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SOKR-23E3.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=10></th>
+      <td>Hall-80</td>
+      <td>1918</td>
+      <td>Clinical</td>
+      <td>beans (foodborne isolate)</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3522</td>
+      <td>3582</td>
+      <td>B</td>
+      <td>HA: 33, 17, 70</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='Hall-80.bmp') }}">View</a></td>
+      <td>40.633/-89.39</td>
+      <td>USA</td>
+      <td>Illinois</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=11></th>
+      <td>Hall-8388A</td>
+      <td>1935</td>
+      <td>Clinical</td>
+      <td>chili pepper (foodborne isolate)</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3606</td>
+      <td>3653</td>
+      <td>A</td>
+      <td>None</td>
+      <td>None</td>
+      <td>641</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='Hall-8388A.bmp') }}">View</a></td>
+      <td>34.519/-105.8</td>
+      <td>USA</td>
+      <td>New Mexico</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=12></th>
+      <td>SU1917</td>
+      <td>2009</td>
+      <td>Clinical</td>
+      <td>soil</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>4087</td>
+      <td>4165</td>
+      <td>A</td>
+      <td>ORF: X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SU1917.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=13></th>
+      <td>SU1934</td>
+      <td>2010</td>
+      <td>Clinical</td>
+      <td>soil</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3663</td>
+      <td>3740</td>
+      <td>A</td>
+      <td>ORF: X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SU1934.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=14></th>
+      <td>SO325E</td>
+      <td>2001</td>
+      <td>Clinical</td>
+      <td>Shoreline Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3653</td>
+      <td>3746</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SO325E.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Tasiujaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=15></th>
+      <td>SO305E1</td>
+      <td>2003</td>
+      <td>Clinical</td>
+      <td>Shoreline Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3674</td>
+      <td>3765</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>9274</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SO305E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Inukjuak (East Hudson Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=16></th>
+      <td>SOKR-46E1</td>
+      <td>2004</td>
+      <td>Clinical</td>
+      <td>Marine Sediment</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3415</td>
+      <td>3509</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SOKR-46E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=17></th>
+      <td>SOKR-22E1</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Freshwater Sediment</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3664</td>
+      <td>3757</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SOKR-22E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=18></th>
+      <td>SU1275</td>
+      <td>1997</td>
+      <td>Clinical</td>
+      <td>soil</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>4027</td>
+      <td>4108</td>
+      <td>A</td>
+      <td>ORF: X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SU1275.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=19></th>
+      <td>12LNR13-CD</td>
+      <td>2012</td>
+      <td>Clinical</td>
+      <td>Poultry Farm</td>
+      <td>SRA</td>
+      <td>ParisUni</td>
+      <td>2984</td>
+      <td>3079</td>
+      <td>C/D</td>
+      <td>HA: 17</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>6288</td>
+      <td><a href="{{ url_for('images', file_name='12LNR13-CD.bmp') }}">View</a></td>
+      <td>43.941/-0.753</td>
+      <td>France</td>
+      <td>Landes</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=20></th>
+      <td>SOKR-49E1</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Sediment</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3560</td>
+      <td>3644</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SOKR-49E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=21></th>
+      <td>TRK02-04E3</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Terrestrial Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3612</td>
+      <td>3700</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>9276</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='TRK02-04E3.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=22></th>
+      <td>SOKR-25E3</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Terrestrial Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3498</td>
+      <td>3592</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SOKR-25E3.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=23></th>
+      <td>S9510E</td>
+      <td>1995</td>
+      <td>Clinical</td>
+      <td>Seal Meat</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3611</td>
+      <td>3686</td>
+      <td>E, E</td>
+      <td>ORF: X3, X2, X1; ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000, 10000</td>
+      <td>10000, 10000</td>
+      <td><a href="{{ url_for('images', file_name='S9510E.1.bmp') }}">Toxin1  </a><a href="{{ url_for('images', file_name='S9510E.2.bmp') }}">Toxin2  </a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=24></th>
+      <td>E1-Dolman</td>
+      <td>1949</td>
+      <td>Clinical</td>
+      <td>Pickled Herring</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3699</td>
+      <td>3792</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>9663</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='E1-Dolman.bmp') }}">View</a></td>
+      <td>45.638/-122.6</td>
+      <td>Canada</td>
+      <td>Vancouver (Pacific Coast) - BC</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=25></th>
+      <td>47295-DC</td>
+      <td>2009</td>
+      <td>Clinical</td>
+      <td>Cattle Farm</td>
+      <td>SRA</td>
+      <td>ParisUni</td>
+      <td>3076</td>
+      <td>3168</td>
+      <td>D/C</td>
+      <td>HA: 17</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='47295-DC.bmp') }}">View</a></td>
+      <td>48.510/-3.326</td>
+      <td>France</td>
+      <td>Cotes d Armor</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=26></th>
+      <td>111Delta</td>
+      <td>2014-12-01</td>
+      <td>Clinical</td>
+      <td>None</td>
+      <td>SRA</td>
+      <td>GIRC</td>
+      <td>3541</td>
+      <td>3627</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=27></th>
+      <td>FE9709EBB</td>
+      <td>1997</td>
+      <td>Clinical</td>
+      <td>Feces</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3576</td>
+      <td>3653</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>9278</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='FE9709EBB.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kangiqsualujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=28></th>
+      <td>BFLY-6</td>
+      <td>1980</td>
+      <td>Clinical</td>
+      <td>Duck Carcass</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3524</td>
+      <td>3618</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>51.864/-104.3</td>
+      <td>Canada</td>
+      <td>Little Quill Lake - Saskatchewan</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=29></th>
+      <td>SU0635W</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>soil</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3685</td>
+      <td>3748</td>
+      <td>A</td>
+      <td>None</td>
+      <td>None</td>
+      <td>4990</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SU0635W.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=30></th>
+      <td>TRK02-06E2</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Terrestrial Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3416</td>
+      <td>3490</td>
+      <td>E</td>
+      <td>None</td>
+      <td>None</td>
+      <td>4867</td>
+      <td>4738</td>
+      <td><a href="{{ url_for('images', file_name='TRK02-06E2.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=31></th>
+      <td>Fukuoka2010</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>None</td>
+      <td>SRA</td>
+      <td>NIID</td>
+      <td>3708</td>
+      <td>3793</td>
+      <td>A, B</td>
+      <td>ORF: X2, X1; HA: 33, 17, 70</td>
+      <td>None</td>
+      <td>10000, 10000</td>
+      <td>10000, 10000</td>
+      <td><a href="{{ url_for('images', file_name='Fukuoka2010.1.bmp') }}">Toxin1  </a><a href="{{ url_for('images', file_name='Fukuoka2010.2.bmp') }}">Toxin2  </a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=32></th>
+      <td>SO329E1</td>
+      <td>2001</td>
+      <td>Clinical</td>
+      <td>Shoreline Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3397</td>
+      <td>3487</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SO329E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=33></th>
+      <td>GA9604ESM</td>
+      <td>1996</td>
+      <td>Clinical</td>
+      <td>Gastric Liquid</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3317</td>
+      <td>3410</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>9276</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='GA9604ESM.bmp') }}">View</a></td>
+      <td>60.752/-69.51</td>
+      <td>Canada</td>
+      <td>Quaqtaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=34></th>
+      <td>GA0108EJC</td>
+      <td>2001</td>
+      <td>Clinical</td>
+      <td>Gastric Liquid</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3317</td>
+      <td>3411</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='GA0108EJC.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Tasiujaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=35></th>
+      <td>BFLY-1</td>
+      <td>1980</td>
+      <td>Clinical</td>
+      <td>Duck Carcass</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3457</td>
+      <td>3531</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>51.864/-104.3</td>
+      <td>Canada</td>
+      <td>Little Quill Lake - Saskatchewan</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=36></th>
+      <td>SOKR-49E2</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Sediment</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3562</td>
+      <td>3654</td>
+      <td>E</td>
+      <td>None</td>
+      <td>None</td>
+      <td>4860</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SOKR-49E2.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=37></th>
+      <td>AM1295</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>suspected reference strain</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3750</td>
+      <td>3819</td>
+      <td>A</td>
+      <td>HA: 70, 17, 33</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='AM1295.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=38></th>
+      <td>SU0801</td>
+      <td>2010</td>
+      <td>Clinical</td>
+      <td>soil</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>4013</td>
+      <td>4092</td>
+      <td>A</td>
+      <td>None</td>
+      <td>None</td>
+      <td>4976</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SU0801.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=39></th>
+      <td>SU1072</td>
+      <td>1998</td>
+      <td>Clinical</td>
+      <td>soil</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>4084</td>
+      <td>4164</td>
+      <td>A</td>
+      <td>ORF: X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SU1072.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=40></th>
+      <td>SU1064</td>
+      <td>1998</td>
+      <td>Clinical</td>
+      <td>soil</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>4149</td>
+      <td>4226</td>
+      <td>A</td>
+      <td>ORF: X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SU1064.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=41></th>
+      <td>Mauritius</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>fish (foodborne isolate)</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3506</td>
+      <td>3553</td>
+      <td>A</td>
+      <td>ORF: X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='Mauritius.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=42></th>
+      <td>SO307E1</td>
+      <td>2003</td>
+      <td>Clinical</td>
+      <td>Shoreline Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3690</td>
+      <td>3783</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SO307E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Puvirnituq (East Hudson Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=43></th>
+      <td>SOKR-25E2</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Terrestrial Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3509</td>
+      <td>3603</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SOKR-25E2.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=44></th>
+      <td>TRK02-04E1</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Terrestrial Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3552</td>
+      <td>3646</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>9276</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='TRK02-04E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=45></th>
+      <td>SO303E1</td>
+      <td>2001</td>
+      <td>Clinical</td>
+      <td>Shoreline Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3696</td>
+      <td>3789</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SO303E1.bmp') }}">View</a></td>
+      <td>56.552/-76.55</td>
+      <td>Canada</td>
+      <td>Umiujaq (East Hudson Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=46></th>
+      <td>RSKR-68E1</td>
+      <td>2004</td>
+      <td>Clinical</td>
+      <td>Coastal Rock</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3464</td>
+      <td>3556</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>9281</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='RSKR-68E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=47></th>
+      <td>CDC-5247</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>None</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3574</td>
+      <td>3620</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='CDC-5247.bmp') }}">View</a></td>
+      <td>64.200/-149.4</td>
+      <td>USA</td>
+      <td>Alaska</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=48></th>
+      <td>DFPST0012</td>
+      <td>1981</td>
+      <td>Clinical</td>
+      <td>trout</td>
+      <td>SRA</td>
+      <td>CFSAN</td>
+      <td>3786</td>
+      <td>3866</td>
+      <td>B</td>
+      <td>HA: 17, 70</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='DFPST0012.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=49></th>
+      <td>58272-CD</td>
+      <td>2008</td>
+      <td>Clinical</td>
+      <td>Poultry Farm</td>
+      <td>SRA</td>
+      <td>ParisUni</td>
+      <td>2968</td>
+      <td>3068</td>
+      <td>C/D</td>
+      <td>HA: 17</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='58272-CD.bmp') }}">View</a></td>
+      <td>48.252/-3.930</td>
+      <td>France</td>
+      <td>Finistere</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=50></th>
+      <td>DFPST0024</td>
+      <td>2015-04-21</td>
+      <td>Clinical</td>
+      <td>stool</td>
+      <td>SRA</td>
+      <td>CFSAN</td>
+      <td>3474</td>
+      <td>3560</td>
+      <td>A</td>
+      <td>HA: 70, 17, 33</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='DFPST0024.bmp') }}">View</a></td>
+      <td>40.417/-82.90</td>
+      <td>USA</td>
+      <td>OH</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=51></th>
+      <td>ATCC-17843</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>None</td>
+      <td>SRA</td>
+      <td>cBio Inc</td>
+      <td>3636</td>
+      <td>3720</td>
+      <td>B</td>
+      <td>HA: 33, 17, 70</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='ATCC-17843.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=52></th>
+      <td>KAPB8</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>4672</td>
+      <td>4766</td>
+      <td>B</td>
+      <td>HA: 33, 17, 70</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='KAPB8.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=53></th>
+      <td>ATCC-9564-2</td>
+      <td>1961</td>
+      <td>Clinical</td>
+      <td>smoked salmon</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3541</td>
+      <td>3608</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='ATCC-9564-2.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=54></th>
+      <td>Tochigi2008</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>None</td>
+      <td>SRA</td>
+      <td>NIID</td>
+      <td>3524</td>
+      <td>3578</td>
+      <td>A, B</td>
+      <td>None; HA: 33, 17, 70</td>
+      <td>None</td>
+      <td>644, 8815</td>
+      <td>10000, 6582</td>
+      <td><a href="{{ url_for('images', file_name='Tochigi2008.1.bmp') }}">Toxin1  </a><a href="{{ url_for('images', file_name='Tochigi2008.2.bmp') }}">Toxin2  </a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=55></th>
+      <td>55741-CD</td>
+      <td>2008</td>
+      <td>Clinical</td>
+      <td>Poultry Farm</td>
+      <td>SRA</td>
+      <td>ParisUni</td>
+      <td>2911</td>
+      <td>3004</td>
+      <td>C/D</td>
+      <td>HA: 17</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>5358</td>
+      <td><a href="{{ url_for('images', file_name='55741-CD.bmp') }}">View</a></td>
+      <td>44.731/5.2266</td>
+      <td>France</td>
+      <td>Drome</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=56></th>
+      <td>FWSK02-02E1</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Freshwater Sediment</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3521</td>
+      <td>3613</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='FWSK02-02E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=57></th>
+      <td>MO1205E1</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>3346</td>
+      <td>3432</td>
+      <td>E</td>
+      <td>ORF: X3, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='MO1205E1.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=58></th>
+      <td>KF-Meyer-126</td>
+      <td>1921</td>
+      <td>Clinical</td>
+      <td>spinach (foodborne isolate)</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3574</td>
+      <td>3618</td>
+      <td>A</td>
+      <td>HA: 70, 17, 33</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='KF-Meyer-126.bmp') }}">View</a></td>
+      <td>40.267/-86.13</td>
+      <td>USA</td>
+      <td>Indiana</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=59></th>
+      <td>SU0807-2</td>
+      <td>1987</td>
+      <td>Clinical</td>
+      <td>soil</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3805</td>
+      <td>3866</td>
+      <td>A</td>
+      <td>ORF: X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SU0807-2.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=60></th>
+      <td>Okayama2011</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>None</td>
+      <td>SRA</td>
+      <td>NIID</td>
+      <td>4116</td>
+      <td>4181</td>
+      <td>B</td>
+      <td>HA: 33, 17, 70</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='Okayama2011.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=61></th>
+      <td>GA0808EPA</td>
+      <td>2008</td>
+      <td>Clinical</td>
+      <td>Gastric Liquid</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3318</td>
+      <td>3401</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='GA0808EPA.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=62></th>
+      <td>FE9709ELB</td>
+      <td>1997</td>
+      <td>Clinical</td>
+      <td>Feces</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3540</td>
+      <td>3625</td>
+      <td>E</td>
+      <td>None</td>
+      <td>None</td>
+      <td>225</td>
+      <td>4651</td>
+      <td><a href="{{ url_for('images', file_name='FE9709ELB.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kangiqsualujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=63></th>
+      <td>VI9608EPB</td>
+      <td>1996</td>
+      <td>Clinical</td>
+      <td>Seal Meat</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3446</td>
+      <td>3525</td>
+      <td>E</td>
+      <td>None</td>
+      <td>None</td>
+      <td>506</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='VI9608EPB.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Tasiujaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=64></th>
+      <td>GA0702E1CS</td>
+      <td>2007</td>
+      <td>Clinical</td>
+      <td>Gastric Liquid</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3664</td>
+      <td>3756</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='GA0702E1CS.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=65></th>
+      <td>SO304E1</td>
+      <td>2003</td>
+      <td>Clinical</td>
+      <td>Shoreline Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3692</td>
+      <td>3785</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SO304E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Inukjuak (East Hudson Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=66></th>
+      <td>CDC-1744</td>
+      <td>1977</td>
+      <td>Clinical</td>
+      <td>infant botulism</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3661</td>
+      <td>3706</td>
+      <td>A</td>
+      <td>ORF: X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='CDC-1744.bmp') }}">View</a></td>
+      <td>41.203/-77.19</td>
+      <td>USA</td>
+      <td>Pennsylvania</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=67></th>
+      <td>DFPST0030</td>
+      <td>2015-04-24</td>
+      <td>Clinical</td>
+      <td>potato salad</td>
+      <td>SRA</td>
+      <td>CFSAN</td>
+      <td>3470</td>
+      <td>3572</td>
+      <td>A</td>
+      <td>HA: 70, 17, 33</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='DFPST0030.bmp') }}">View</a></td>
+      <td>40.417/-82.90</td>
+      <td>USA</td>
+      <td>OH</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=68></th>
+      <td>DFPST0016</td>
+      <td>1975</td>
+      <td>Clinical</td>
+      <td>fresh mushrooms</td>
+      <td>SRA</td>
+      <td>CFSAN</td>
+      <td>3790</td>
+      <td>3870</td>
+      <td>B</td>
+      <td>HA: 17, 70</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='DFPST0016.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=69></th>
+      <td>BE0211E2</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Beluga</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3708</td>
+      <td>3794</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=70></th>
+      <td>43243-CD</td>
+      <td>2009</td>
+      <td>Clinical</td>
+      <td>Poultry Farm</td>
+      <td>SRA</td>
+      <td>ParisUni</td>
+      <td>2910</td>
+      <td>3010</td>
+      <td>C/D</td>
+      <td>HA: 17</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='43243-CD.bmp') }}">View</a></td>
+      <td>45.749/-0.773</td>
+      <td>France</td>
+      <td>Charente maritime</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=71></th>
+      <td>RSKR-68E3</td>
+      <td>2004</td>
+      <td>Clinical</td>
+      <td>Coastal Rock</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3410</td>
+      <td>3498</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='RSKR-68E3.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=72></th>
+      <td>Hall-8857Ab</td>
+      <td>1935</td>
+      <td>Clinical</td>
+      <td>corn (foodborne isolate)</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3718</td>
+      <td>3788</td>
+      <td>A</td>
+      <td>None</td>
+      <td>None</td>
+      <td>665</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='Hall-8857Ab.bmp') }}">View</a></td>
+      <td>41.492/-99.90</td>
+      <td>USA</td>
+      <td>Nebraska</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=73></th>
+      <td>SWKR38E2</td>
+      <td>2004</td>
+      <td>Clinical</td>
+      <td>Seawater</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3590</td>
+      <td>3663</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SWKR38E2.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=74></th>
+      <td>Prevot-Dewping</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>None</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3570</td>
+      <td>3614</td>
+      <td>A</td>
+      <td>HA: 70, 17, 33</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='Prevot-Dewping.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=75></th>
+      <td>SU1937</td>
+      <td>2009</td>
+      <td>Clinical</td>
+      <td>soil</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>4122</td>
+      <td>4194</td>
+      <td>A</td>
+      <td>ORF: X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SU1937.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=76></th>
+      <td>ATCC-17786</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>None</td>
+      <td>SRA</td>
+      <td>cBio Inc</td>
+      <td>3635</td>
+      <td>3758</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='ATCC-17786.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=77></th>
+      <td>12LNR10-CD</td>
+      <td>2012</td>
+      <td>Clinical</td>
+      <td>Poultry Farm</td>
+      <td>SRA</td>
+      <td>ParisUni</td>
+      <td>2908</td>
+      <td>3002</td>
+      <td>C/D</td>
+      <td>HA: 17</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='12LNR10-CD.bmp') }}">View</a></td>
+      <td>47.824/-1.807</td>
+      <td>France</td>
+      <td>Messac</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=78></th>
+      <td>Prevot-Ped-1</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>sea mud</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3472</td>
+      <td>3546</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='Prevot-Ped-1.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=79></th>
+      <td>IN01SE63E1</td>
+      <td>2001</td>
+      <td>Clinical</td>
+      <td>Seal Intestine specimen</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3401</td>
+      <td>3495</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>9276</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='IN01SE63E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=80></th>
+      <td>SOKR-34E5</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Sediment</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3550</td>
+      <td>3637</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=81></th>
+      <td>SOKR-44E2</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Shoreline Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3494</td>
+      <td>3588</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SOKR-44E2.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=82></th>
+      <td>MI9706E</td>
+      <td>1997</td>
+      <td>Clinical</td>
+      <td>Igunaq</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3473</td>
+      <td>3550</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='MI9706E.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Tasiujaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=83></th>
+      <td>12LNRI-CD</td>
+      <td>2012</td>
+      <td>Clinical</td>
+      <td>Poultry Farm</td>
+      <td>SRA</td>
+      <td>ParisUni</td>
+      <td>2870</td>
+      <td>2972</td>
+      <td>C/D</td>
+      <td>HA: 17</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>5362</td>
+      <td><a href="{{ url_for('images', file_name='12LNRI-CD.bmp') }}">View</a></td>
+      <td>47.885/-2.900</td>
+      <td>France</td>
+      <td>Morbihan</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=84></th>
+      <td>FE9708E1JI</td>
+      <td>1997</td>
+      <td>Clinical</td>
+      <td>Feces</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3396</td>
+      <td>3472</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>61.122/-94.01</td>
+      <td>Canada</td>
+      <td>Arviat (West Hudson Bay) - Nunavut</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=85></th>
+      <td>MI9608ESM</td>
+      <td>1996</td>
+      <td>Clinical</td>
+      <td>Seal Meat</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3706</td>
+      <td>3781</td>
+      <td>E</td>
+      <td>None</td>
+      <td>None</td>
+      <td>474</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='MI9608ESM.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Tasiujaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=86></th>
+      <td>DFPST0019</td>
+      <td>1963</td>
+      <td>Clinical</td>
+      <td>vacuum packed - whole - smoked whitefish chubs</td>
+      <td>SRA</td>
+      <td>CFSAN</td>
+      <td>3343</td>
+      <td>3437</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>9288</td>
+      <td><a href="{{ url_for('images', file_name='DFPST0019.bmp') }}">View</a></td>
+      <td>44.314/-85.60</td>
+      <td>USA</td>
+      <td>MI</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=87></th>
+      <td>SOKR-19E1</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Shoreline Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3449</td>
+      <td>3533</td>
+      <td>E</td>
+      <td>None</td>
+      <td>None</td>
+      <td>129</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SOKR-19E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=88></th>
+      <td>FE9908EDL</td>
+      <td>1999</td>
+      <td>Clinical</td>
+      <td>Feces</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3574</td>
+      <td>3655</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='FE9908EDL.bmp') }}">View</a></td>
+      <td>59.473/-69.55</td>
+      <td>Canada</td>
+      <td>Aupaluk (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=89></th>
+      <td>Eklund-17B</td>
+      <td>1965</td>
+      <td>Clinical</td>
+      <td>Marine Sediment</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3489</td>
+      <td>3561</td>
+      <td>B</td>
+      <td>HA: 33, 17, 70</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='Eklund-17B.bmp') }}">View</a></td>
+      <td>38.907/-77.03</td>
+      <td>USA</td>
+      <td>Washington</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=90></th>
+      <td>SWKR07E1</td>
+      <td>2004</td>
+      <td>Clinical</td>
+      <td>Seawater</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3557</td>
+      <td>3651</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SWKR07E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=91></th>
+      <td>GA0702E1</td>
+      <td>2007</td>
+      <td>Clinical</td>
+      <td>Gastric Liquid</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3736</td>
+      <td>3822</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='GA0702E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=92></th>
+      <td>DFPST0008</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>None</td>
+      <td>SRA</td>
+      <td>CFSAN</td>
+      <td>3795</td>
+      <td>3887</td>
+      <td>B, F</td>
+      <td>HA: 33, 17, 70; None</td>
+      <td>None</td>
+      <td>10000, 10000</td>
+      <td>10000, 10000</td>
+      <td><a href="{{ url_for('images', file_name='DFPST0008.1.bmp') }}">Toxin1  </a><a href="{{ url_for('images', file_name='DFPST0008.2.bmp') }}">Toxin2  </a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=93></th>
+      <td>Gordon</td>
+      <td>1975</td>
+      <td>Clinical</td>
+      <td>Clinical Specimen</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3420</td>
+      <td>3511</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='Gordon.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=94></th>
+      <td>FE1010E1JL</td>
+      <td>2010</td>
+      <td>Clinical</td>
+      <td>Feces</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3320</td>
+      <td>3410</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='FE1010E1JL.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=95></th>
+      <td>SU1887</td>
+      <td>2007</td>
+      <td>Clinical</td>
+      <td>soil</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3686</td>
+      <td>3761</td>
+      <td>A</td>
+      <td>ORF: X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SU1887.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=96></th>
+      <td>SOKR-34E2</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Shoreline Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3573</td>
+      <td>3650</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SOKR-34E2.bmp') }}">View</a></td>
+      <td>58.102/-68.41</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Wuebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=97></th>
+      <td>TRK02-08E3</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Terrestrial Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3676</td>
+      <td>3720</td>
+      <td>E</td>
+      <td>ORF: X1</td>
+      <td>None</td>
+      <td>6513</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='TRK02-08E3.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=98></th>
+      <td>SP417E-NT</td>
+      <td>2001</td>
+      <td>Clinical</td>
+      <td>Coastal Rock</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3638</td>
+      <td>3730</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SP417E-NT.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Puvirnituq (East Hudson Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=99></th>
+      <td>FWSK02-07E3</td>
+      <td>2004</td>
+      <td>Clinical</td>
+      <td>Freshwater Sediment</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3513</td>
+      <td>3606</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>9278</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='FWSK02-07E3.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=100></th>
+      <td>SO321E1</td>
+      <td>2001</td>
+      <td>Clinical</td>
+      <td>Shoreline Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3651</td>
+      <td>3738</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SO321E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kangirsuk (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=101></th>
+      <td>FWSK02-01E2</td>
+      <td>2004</td>
+      <td>Clinical</td>
+      <td>Freshwater Sediment</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3362</td>
+      <td>3438</td>
+      <td>E</td>
+      <td>None</td>
+      <td>None</td>
+      <td>576</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='FWSK02-01E2.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=102></th>
+      <td>TRK02-06E3</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Terrestrial Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3455</td>
+      <td>3530</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='TRK02-06E3.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=103></th>
+      <td>Eklund-2B</td>
+      <td>1965</td>
+      <td>Clinical</td>
+      <td>Marine Sediment</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3488</td>
+      <td>3574</td>
+      <td>B</td>
+      <td>HA: 33, 17, 70</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='Eklund-2B.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=104></th>
+      <td>Hall-4834</td>
+      <td>1931</td>
+      <td>Clinical</td>
+      <td>spinach (foodborne isolate)</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3893</td>
+      <td>3957</td>
+      <td>A</td>
+      <td>HA: 70, 17, 33</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='Hall-4834.bmp') }}">View</a></td>
+      <td>41.492/-99.90</td>
+      <td>USA</td>
+      <td>Nebraska</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=105></th>
+      <td>SP417E-Alc</td>
+      <td>2001</td>
+      <td>Clinical</td>
+      <td>Coastal Rock</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3678</td>
+      <td>3734</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Puvirnituq (East Hudson Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=106></th>
+      <td>111</td>
+      <td>2014-12-01</td>
+      <td>Clinical</td>
+      <td>None</td>
+      <td>SRA</td>
+      <td>GIRC</td>
+      <td>3854</td>
+      <td>3942</td>
+      <td>B</td>
+      <td>HA: 33, 17, 70</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='111.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=107></th>
+      <td>51714-DC</td>
+      <td>2009</td>
+      <td>Clinical</td>
+      <td>Cattle Farm</td>
+      <td>SRA</td>
+      <td>ParisUni</td>
+      <td>3082</td>
+      <td>3172</td>
+      <td>D/C</td>
+      <td>HA: 17</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='51714-DC.bmp') }}">View</a></td>
+      <td>47.925/-1.900</td>
+      <td>France</td>
+      <td>Ille et Vilaine</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=108></th>
+      <td>DFPST0006</td>
+      <td>1947</td>
+      <td>Clinical</td>
+      <td>beans</td>
+      <td>SRA</td>
+      <td>CFSAN</td>
+      <td>3795</td>
+      <td>3883</td>
+      <td>B</td>
+      <td>HA: 33, 17, 70</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='DFPST0006.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=109></th>
+      <td>SU1891</td>
+      <td>2007</td>
+      <td>Clinical</td>
+      <td>soil</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>4321</td>
+      <td>4403</td>
+      <td>A</td>
+      <td>ORF: X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SU1891.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=110></th>
+      <td>SOKR-24E2</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Marine Sediment</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3517</td>
+      <td>3608</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SOKR-24E2.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=111></th>
+      <td>SO326E1</td>
+      <td>2001</td>
+      <td>Clinical</td>
+      <td>Shoreline Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3546</td>
+      <td>3639</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>9281</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SO326E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Tasiujaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=112></th>
+      <td>V9804E</td>
+      <td>1998</td>
+      <td>Clinical</td>
+      <td>Seal Meat</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3412</td>
+      <td>3501</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='V9804E.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=113></th>
+      <td>FE1206E2</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>3326</td>
+      <td>3414</td>
+      <td>E</td>
+      <td>ORF: X3, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='FE1206E2.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=114></th>
+      <td>CDC-795</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>None</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3697</td>
+      <td>3754</td>
+      <td>B</td>
+      <td>HA: 33, 17, 70</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='CDC-795.bmp') }}">View</a></td>
+      <td>44.314/-85.60</td>
+      <td>USA</td>
+      <td>Michigan</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=115></th>
+      <td>FWSK02-04E1</td>
+      <td>2004</td>
+      <td>Clinical</td>
+      <td>Freshwater Sediment</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3556</td>
+      <td>3635</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>9276</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='FWSK02-04E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=116></th>
+      <td>FE0201E1BC</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Feces</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3317</td>
+      <td>3410</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='FE0201E1BC.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Tasiujaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=117></th>
+      <td>SU1112</td>
+      <td>1995</td>
+      <td>Clinical</td>
+      <td>soil</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3590</td>
+      <td>3673</td>
+      <td>A</td>
+      <td>ORF: X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SU1112.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=118></th>
+      <td>FE9709EBB2</td>
+      <td>1997</td>
+      <td>Clinical</td>
+      <td>Feces</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3622</td>
+      <td>3715</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>9276</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='FE9709EBB2.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kangiqsualujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=119></th>
+      <td>SO303E4</td>
+      <td>2001</td>
+      <td>Clinical</td>
+      <td>Shoreline Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3680</td>
+      <td>3772</td>
+      <td>E</td>
+      <td>None</td>
+      <td>None</td>
+      <td>1664</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SO303E4.bmp') }}">View</a></td>
+      <td>56.552/-76.55</td>
+      <td>Canada</td>
+      <td>Umiujaq (East Hudson Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=120></th>
+      <td>16868</td>
+      <td>2001</td>
+      <td>Clinical</td>
+      <td>None</td>
+      <td>SRA</td>
+      <td>National Veterinary Institute (SVA)</td>
+      <td>2894</td>
+      <td>2996</td>
+      <td>D</td>
+      <td>HA: 70, 17</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>1435</td>
+      <td><a href="{{ url_for('images', file_name='16868.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=121></th>
+      <td>SOKR-38E2</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Marine Sediment</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3477</td>
+      <td>3570</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SOKR-38E2.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=122></th>
+      <td>MU0103EMS</td>
+      <td>2001</td>
+      <td>Clinical</td>
+      <td>Muktuk Oil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3362</td>
+      <td>3437</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='MU0103EMS.bmp') }}">View</a></td>
+      <td>68.219/-135.0</td>
+      <td>Canada</td>
+      <td>Aklavik - Northwest Territories</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=123></th>
+      <td>GA1205E1</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>3329</td>
+      <td>3414</td>
+      <td>E</td>
+      <td>ORF: X3, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='GA1205E1.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=124></th>
+      <td>SU0634</td>
+      <td>1980</td>
+      <td>Clinical</td>
+      <td>soil</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3570</td>
+      <td>3645</td>
+      <td>A</td>
+      <td>ORF: X3, X2</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SU0634.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=125></th>
+      <td>TRK02-07E1</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Shoreline Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3406</td>
+      <td>3496</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='TRK02-07E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=126></th>
+      <td>GA9709EJA</td>
+      <td>1997</td>
+      <td>Clinical</td>
+      <td>Gastric Liquid</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3607</td>
+      <td>3700</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='GA9709EJA.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kangiqsualujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=127></th>
+      <td>SE9908E</td>
+      <td>1999</td>
+      <td>Clinical</td>
+      <td>Seal Intestine specimen</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3411</td>
+      <td>3488</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SE9908E.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=128></th>
+      <td>DFPST0029</td>
+      <td>2015-04-24</td>
+      <td>Clinical</td>
+      <td>macaroni and cheese</td>
+      <td>SRA</td>
+      <td>CFSAN</td>
+      <td>3469</td>
+      <td>3562</td>
+      <td>A</td>
+      <td>HA: 70, 17, 33</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='DFPST0029.bmp') }}">View</a></td>
+      <td>40.417/-82.90</td>
+      <td>USA</td>
+      <td>OH</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=129></th>
+      <td>Iwate2007</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>None</td>
+      <td>SRA</td>
+      <td>NIID</td>
+      <td>3607</td>
+      <td>3694</td>
+      <td>A, B</td>
+      <td>ORF: X2, X1; HA: 33, 17, 70</td>
+      <td>None</td>
+      <td>10000, 10000</td>
+      <td>10000, 10000</td>
+      <td><a href="{{ url_for('images', file_name='Iwate2007.1.bmp') }}">Toxin1  </a><a href="{{ url_for('images', file_name='Iwate2007.2.bmp') }}">Toxin2  </a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=130></th>
+      <td>BE0211E1</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Beluga</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3619</td>
+      <td>3710</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=131></th>
+      <td>An436</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>infant botulism</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3991</td>
+      <td>4056</td>
+      <td>B, F</td>
+      <td>HA: 33, 17, 70; None</td>
+      <td>None</td>
+      <td>10000, 10000</td>
+      <td>10000, 10000</td>
+      <td><a href="{{ url_for('images', file_name='An436.1.bmp') }}">Toxin1  </a><a href="{{ url_for('images', file_name='An436.2.bmp') }}">Toxin2  </a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=132></th>
+      <td>McClung-844</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>None</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3583</td>
+      <td>3620</td>
+      <td>A</td>
+      <td>HA: 70, 17, 33</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='McClung-844.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=133></th>
+      <td>211</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>lake sediment</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3429</td>
+      <td>3472</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='211.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=134></th>
+      <td>SWKR0402E1</td>
+      <td>2004</td>
+      <td>Clinical</td>
+      <td>Seawater</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3598</td>
+      <td>3678</td>
+      <td>E</td>
+      <td>None</td>
+      <td>None</td>
+      <td>2475</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SWKR0402E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=135></th>
+      <td>SU0998-2</td>
+      <td>1994</td>
+      <td>Clinical</td>
+      <td>soil</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3903</td>
+      <td>3974</td>
+      <td>A</td>
+      <td>ORF: X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SU0998-2.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=136></th>
+      <td>KAPB-3</td>
+      <td>1981</td>
+      <td>Clinical</td>
+      <td>Salted whitefish</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3176</td>
+      <td>3281</td>
+      <td>B</td>
+      <td>None</td>
+      <td>None</td>
+      <td>982</td>
+      <td>712</td>
+      <td><a href="{{ url_for('images', file_name='KAPB-3.bmp') }}">View</a></td>
+      <td>36.778/-119.4</td>
+      <td>USA</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=137></th>
+      <td>DFPST0032</td>
+      <td>2015-04-24</td>
+      <td>Clinical</td>
+      <td>potato salad and egg</td>
+      <td>SRA</td>
+      <td>CFSAN</td>
+      <td>3457</td>
+      <td>3550</td>
+      <td>A</td>
+      <td>HA: 70, 17, 33</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='DFPST0032.bmp') }}">View</a></td>
+      <td>40.417/-82.90</td>
+      <td>USA</td>
+      <td>OH</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=138></th>
+      <td>IG0410E3LC</td>
+      <td>2004</td>
+      <td>Clinical</td>
+      <td>Igunaq</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3457</td>
+      <td>3530</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='IG0410E3LC.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Tasiujaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=139></th>
+      <td>GA0202E1TS</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Gastric Liquid</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3313</td>
+      <td>3405</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='GA0202E1TS.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Tasiujaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=140></th>
+      <td>Prevot-R81-3A</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>None</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3413</td>
+      <td>3469</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='Prevot-R81-3A.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=141></th>
+      <td>SOKR-42E1</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Shoreline Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3539</td>
+      <td>3619</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SOKR-42E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Tasiujaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=142></th>
+      <td>SU0998</td>
+      <td>1994</td>
+      <td>Clinical</td>
+      <td>soil</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3899</td>
+      <td>3961</td>
+      <td>A</td>
+      <td>ORF: X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SU0998.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=143></th>
+      <td>FWSK02-06E1</td>
+      <td>2004</td>
+      <td>Clinical</td>
+      <td>Freshwater Sediment</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3382</td>
+      <td>3459</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='FWSK02-06E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=144></th>
+      <td>DFPST0026</td>
+      <td>2015-04-22</td>
+      <td>Clinical</td>
+      <td>stool</td>
+      <td>SRA</td>
+      <td>CFSAN</td>
+      <td>3469</td>
+      <td>3551</td>
+      <td>A</td>
+      <td>HA: 70, 17, 33</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='DFPST0026.bmp') }}">View</a></td>
+      <td>40.417/-82.90</td>
+      <td>USA</td>
+      <td>OH</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=145></th>
+      <td>FI1206E1</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>3367</td>
+      <td>3452</td>
+      <td>E</td>
+      <td>None</td>
+      <td>None</td>
+      <td>1783</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='FI1206E1.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=146></th>
+      <td>FWKR02E1</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Freshwater Sediment</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3406</td>
+      <td>3500</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>9274</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='FWKR02E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=147></th>
+      <td>SU1575NT-2</td>
+      <td>1999</td>
+      <td>Clinical</td>
+      <td>soil - colony variant of SU1575</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3475</td>
+      <td>3541</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=148></th>
+      <td>SP457-458E</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Coastal Rock</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3536</td>
+      <td>3630</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SP457-458E.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=149></th>
+      <td>FE9507EEA</td>
+      <td>1995</td>
+      <td>Clinical</td>
+      <td>Feces</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3588</td>
+      <td>3674</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='FE9507EEA.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kangiqsualujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=150></th>
+      <td>DFPST0028</td>
+      <td>2015-04-24</td>
+      <td>Clinical</td>
+      <td>potato salad and spaghetti</td>
+      <td>SRA</td>
+      <td>CFSAN</td>
+      <td>3468</td>
+      <td>3550</td>
+      <td>A</td>
+      <td>HA: 70, 17, 33</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='DFPST0028.bmp') }}">View</a></td>
+      <td>40.417/-82.90</td>
+      <td>USA</td>
+      <td>OH</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=151></th>
+      <td>BFLY-2</td>
+      <td>1980</td>
+      <td>Clinical</td>
+      <td>Duck Carcass</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3520</td>
+      <td>3614</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>51.864/-104.3</td>
+      <td>Canada</td>
+      <td>Little Quill Lake - Saskatchewan</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=152></th>
+      <td>DFPST0017</td>
+      <td>1973</td>
+      <td>Clinical</td>
+      <td>blackberry jam</td>
+      <td>SRA</td>
+      <td>CFSAN</td>
+      <td>3805</td>
+      <td>3885</td>
+      <td>B</td>
+      <td>HA: 33, 17, 70</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='DFPST0017.bmp') }}">View</a></td>
+      <td>37.839/-84.27</td>
+      <td>USA</td>
+      <td>KY</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=153></th>
+      <td>SU1054</td>
+      <td>1998</td>
+      <td>Clinical</td>
+      <td>soil</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>4103</td>
+      <td>4185</td>
+      <td>A</td>
+      <td>ORF: X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SU1054.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=154></th>
+      <td>MSKR5102E2</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Marine Sediment</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3484</td>
+      <td>3578</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>9374</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='MSKR5102E2.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=155></th>
+      <td>VI9508E</td>
+      <td>1995</td>
+      <td>Clinical</td>
+      <td>Seal Igunaq</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3544</td>
+      <td>3625</td>
+      <td>E</td>
+      <td>None</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='VI9508E.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=156></th>
+      <td>DFPST0031</td>
+      <td>2015-04-24</td>
+      <td>Clinical</td>
+      <td>potato salad</td>
+      <td>SRA</td>
+      <td>CFSAN</td>
+      <td>3472</td>
+      <td>3572</td>
+      <td>A</td>
+      <td>HA: 70, 17, 33</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='DFPST0031.bmp') }}">View</a></td>
+      <td>40.417/-82.90</td>
+      <td>USA</td>
+      <td>OH</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=157></th>
+      <td>SU0807</td>
+      <td>1987</td>
+      <td>Clinical</td>
+      <td>soil</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3804</td>
+      <td>3877</td>
+      <td>A</td>
+      <td>ORF: X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SU0807.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=158></th>
+      <td>FWKR11E1</td>
+      <td>2004</td>
+      <td>Clinical</td>
+      <td>Freshwater</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3569</td>
+      <td>3663</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='FWKR11E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=159></th>
+      <td>KF-Meyer-33</td>
+      <td>1920</td>
+      <td>Clinical</td>
+      <td>ripe olives</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3712</td>
+      <td>3769</td>
+      <td>A</td>
+      <td>HA: 70, 17, 33</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='KF-Meyer-33.bmp') }}">View</a></td>
+      <td>35.517/-86.58</td>
+      <td>USA</td>
+      <td>Tennessee</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=160></th>
+      <td>GA9706EMA</td>
+      <td>1997</td>
+      <td>Clinical</td>
+      <td>Gastric Liquid</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3688</td>
+      <td>3763</td>
+      <td>E</td>
+      <td>None</td>
+      <td>None</td>
+      <td>4861</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='GA9706EMA.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Tasiujaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=161></th>
+      <td>SO309E2</td>
+      <td>2001</td>
+      <td>Clinical</td>
+      <td>Shoreline Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3533</td>
+      <td>3609</td>
+      <td>E</td>
+      <td>None</td>
+      <td>None</td>
+      <td>4967</td>
+      <td>5185</td>
+      <td><a href="{{ url_for('images', file_name='SO309E2.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Puvirnituq (East Hudson Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=162></th>
+      <td>ATCC-9564</td>
+      <td>1934</td>
+      <td>Clinical</td>
+      <td>Smoked salmon</td>
+      <td>SRA</td>
+      <td>cBio Inc</td>
+      <td>3648</td>
+      <td>3792</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='ATCC-9564.bmp') }}">View</a></td>
+      <td>44.681/-63.74</td>
+      <td>Canada</td>
+      <td>North America - Nova Scotia</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=163></th>
+      <td>DFPST0018</td>
+      <td>1963</td>
+      <td>Clinical</td>
+      <td>vacuum packed - smoked whitefish chubs</td>
+      <td>SRA</td>
+      <td>CFSAN</td>
+      <td>3411</td>
+      <td>3499</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='DFPST0018.bmp') }}">View</a></td>
+      <td>45.052/-82.48</td>
+      <td>USA</td>
+      <td>Great Lakes</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=164></th>
+      <td>Ibaraki2007</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>None</td>
+      <td>SRA</td>
+      <td>NIID</td>
+      <td>3650</td>
+      <td>3736</td>
+      <td>A</td>
+      <td>None</td>
+      <td>None</td>
+      <td>693</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='Ibaraki2007.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=165></th>
+      <td>ATCC-25763</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>None</td>
+      <td>SRA</td>
+      <td>cBio Inc</td>
+      <td>4660</td>
+      <td>5035</td>
+      <td>A</td>
+      <td>HA: 70, 17, 33</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='ATCC-25763.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=166></th>
+      <td>DFPST0027</td>
+      <td>2015-04-24</td>
+      <td>Clinical</td>
+      <td>potato salad</td>
+      <td>SRA</td>
+      <td>CFSAN</td>
+      <td>3472</td>
+      <td>3550</td>
+      <td>A</td>
+      <td>HA: 70, 17, 33</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='DFPST0027.bmp') }}">View</a></td>
+      <td>40.417/-82.90</td>
+      <td>USA</td>
+      <td>OH</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=167></th>
+      <td>IG0202E1</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Walrus Igunaq</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3309</td>
+      <td>3399</td>
+      <td>E</td>
+      <td>None</td>
+      <td>None</td>
+      <td>1659</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='IG0202E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Tasiujaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=168></th>
+      <td>48212-CD</td>
+      <td>2008</td>
+      <td>Clinical</td>
+      <td>Poultry Farm</td>
+      <td>SRA</td>
+      <td>ParisUni</td>
+      <td>2997</td>
+      <td>3099</td>
+      <td>C/D</td>
+      <td>HA: 17</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='48212-CD.bmp') }}">View</a></td>
+      <td>43.636/0.4502</td>
+      <td>France</td>
+      <td>Gers</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=169></th>
+      <td>KAPB3</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>3527</td>
+      <td>3605</td>
+      <td>B</td>
+      <td>HA: 33, 17, 70</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>6735</td>
+      <td><a href="{{ url_for('images', file_name='KAPB3.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=170></th>
+      <td>INWB2202E1</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Seal Intestine specimen</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3405</td>
+      <td>3499</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='INWB2202E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kangiqsujuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=171></th>
+      <td>F9508EPB</td>
+      <td>1995</td>
+      <td>Clinical</td>
+      <td>Feces</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3554</td>
+      <td>3648</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='F9508EPB.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Tasiujaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=172></th>
+      <td>CCUG-7971</td>
+      <td>1926</td>
+      <td>Clinical</td>
+      <td>None</td>
+      <td>SRA</td>
+      <td>National Veterinary Institute (SVA)</td>
+      <td>2607</td>
+      <td>2698</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=173></th>
+      <td>Hall-183</td>
+      <td>1922</td>
+      <td>Clinical</td>
+      <td>corn (foodborne isolate)</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3705</td>
+      <td>3765</td>
+      <td>A</td>
+      <td>None</td>
+      <td>None</td>
+      <td>666</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='Hall-183.bmp') }}">View</a></td>
+      <td>39.550/-105.7</td>
+      <td>USA</td>
+      <td>Colorado</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=174></th>
+      <td>SOKR-50E2</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Terrestrial Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3368</td>
+      <td>3461</td>
+      <td>E</td>
+      <td>None</td>
+      <td>None</td>
+      <td>4867</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SOKR-50E2.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=175></th>
+      <td>FWSK02-07E1</td>
+      <td>2004</td>
+      <td>Clinical</td>
+      <td>Freshwater Sediment</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3520</td>
+      <td>3602</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='FWSK02-07E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=176></th>
+      <td>DFPST0025</td>
+      <td>2015-04-22</td>
+      <td>Clinical</td>
+      <td>stool</td>
+      <td>SRA</td>
+      <td>CFSAN</td>
+      <td>3470</td>
+      <td>3571</td>
+      <td>A</td>
+      <td>HA: 70, 17, 33</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='DFPST0025.bmp') }}">View</a></td>
+      <td>40.417/-82.90</td>
+      <td>USA</td>
+      <td>OH</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=177></th>
+      <td>K3</td>
+      <td>1995</td>
+      <td>Clinical</td>
+      <td>trout</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3480</td>
+      <td>3560</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='K3.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=178></th>
+      <td>FE9708E1PI</td>
+      <td>1997</td>
+      <td>Clinical</td>
+      <td>Feces</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3406</td>
+      <td>3499</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='FE9708E1PI.bmp') }}">View</a></td>
+      <td>61.122/-94.01</td>
+      <td>Canada</td>
+      <td>Arviat (West Hudson Bay) - Nunavut</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=179></th>
+      <td>GA9709EHS</td>
+      <td>1997</td>
+      <td>Clinical</td>
+      <td>Gastric Liquid</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3493</td>
+      <td>3587</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='GA9709EHS.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kangiqsualujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=180></th>
+      <td>VPI-7124</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>soil</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3566</td>
+      <td>3616</td>
+      <td>A</td>
+      <td>HA: 70, 17, 33</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='VPI-7124.bmp') }}">View</a></td>
+      <td>37.431/-78.65</td>
+      <td>USA</td>
+      <td>Virginia</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=181></th>
+      <td>DFPST0002</td>
+      <td>1973-10</td>
+      <td>Clinical</td>
+      <td>blackberries</td>
+      <td>SRA</td>
+      <td>CFSAN</td>
+      <td>3793</td>
+      <td>3881</td>
+      <td>B</td>
+      <td>HA: 33, 17, 70</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='DFPST0002.bmp') }}">View</a></td>
+      <td>37.839/-84.27</td>
+      <td>USA</td>
+      <td>KY</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=182></th>
+      <td>DFPST0003</td>
+      <td>1974-02</td>
+      <td>Clinical</td>
+      <td>stool</td>
+      <td>SRA</td>
+      <td>CFSAN</td>
+      <td>3849</td>
+      <td>3936</td>
+      <td>B</td>
+      <td>HA: 33, 17, 70</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='DFPST0003.bmp') }}">View</a></td>
+      <td>32.318/-86.90</td>
+      <td>USA</td>
+      <td>AL</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=183></th>
+      <td>ME0702E1CS</td>
+      <td>2007</td>
+      <td>Clinical</td>
+      <td>Seal Meat in Oil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3669</td>
+      <td>3762</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='ME0702E1CS.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=184></th>
+      <td>BE9708E1</td>
+      <td>1997</td>
+      <td>Clinical</td>
+      <td>Beluga</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3401</td>
+      <td>3486</td>
+      <td>E</td>
+      <td>None</td>
+      <td>None</td>
+      <td>207</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='BE9708E1.bmp') }}">View</a></td>
+      <td>61.122/-94.01</td>
+      <td>Canada</td>
+      <td>Arviat (West Hudson Bay) - Nunavut</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=185></th>
+      <td>GA9608EPB</td>
+      <td>1996</td>
+      <td>Clinical</td>
+      <td>Gastric Liquid</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3554</td>
+      <td>3639</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Tasiujaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=186></th>
+      <td>SO303E3</td>
+      <td>2001</td>
+      <td>Clinical</td>
+      <td>Shoreline Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3687</td>
+      <td>3761</td>
+      <td>E</td>
+      <td>None</td>
+      <td>None</td>
+      <td>4630</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SO303E3.bmp') }}">View</a></td>
+      <td>56.552/-76.55</td>
+      <td>Canada</td>
+      <td>Umiujaq (East Hudson Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=187></th>
+      <td>69285-CD</td>
+      <td>2008</td>
+      <td>Clinical</td>
+      <td>Poultry Farm</td>
+      <td>SRA</td>
+      <td>ParisUni</td>
+      <td>2850</td>
+      <td>2948</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>48.510/-3.326</td>
+      <td>France</td>
+      <td>Cotes d Armor</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=188></th>
+      <td>SU1274</td>
+      <td>1997</td>
+      <td>Clinical</td>
+      <td>soil</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3989</td>
+      <td>4063</td>
+      <td>A</td>
+      <td>ORF: X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SU1274.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=189></th>
+      <td>IG0410E2LC</td>
+      <td>2004</td>
+      <td>Clinical</td>
+      <td>Igunaq</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3555</td>
+      <td>3644</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>9276</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='IG0410E2LC.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Tasiujaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=190></th>
+      <td>CFSAN024410</td>
+      <td>2010</td>
+      <td>Clinical</td>
+      <td>infant stool</td>
+      <td>SRA</td>
+      <td>CFSAN</td>
+      <td>3822</td>
+      <td>3912</td>
+      <td>B</td>
+      <td>HA: 33, 17, 70</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>8482</td>
+      <td><a href="{{ url_for('images', file_name='CFSAN024410.bmp') }}">View</a></td>
+      <td>36.778/-119.4</td>
+      <td>USA</td>
+      <td>CA</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=191></th>
+      <td>GA9604EAK</td>
+      <td>1996</td>
+      <td>Clinical</td>
+      <td>Gastric Liquid</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3317</td>
+      <td>3403</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='GA9604EAK.bmp') }}">View</a></td>
+      <td>60.752/-69.51</td>
+      <td>Canada</td>
+      <td>Quaqtaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=192></th>
+      <td>DFPST0020</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>None</td>
+      <td>SRA</td>
+      <td>CFSAN</td>
+      <td>3423</td>
+      <td>3509</td>
+      <td>E, E</td>
+      <td>ORF: X3, X2, X1; ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000, 10000</td>
+      <td>10000, 10000</td>
+      <td><a href="{{ url_for('images', file_name='DFPST0020.1.bmp') }}">Toxin1  </a><a href="{{ url_for('images', file_name='DFPST0020.2.bmp') }}">Toxin2  </a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=193></th>
+      <td>Prevot-697B</td>
+      <td>1952</td>
+      <td>Clinical</td>
+      <td>cat gut</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3456</td>
+      <td>3500</td>
+      <td>A</td>
+      <td>HA: 70, 17, 33</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='Prevot-697B.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=194></th>
+      <td>Walls-8G</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>river</td>
+      <td>SRA</td>
+      <td>cBio Inc</td>
+      <td>6015</td>
+      <td>6137</td>
+      <td>F</td>
+      <td>ORF: X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='Walls-8G.bmp') }}">View</a></td>
+      <td>37.372/-76.61</td>
+      <td>USA</td>
+      <td>Virginia - York River</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=195></th>
+      <td>DFPST0010</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>kapchunka</td>
+      <td>SRA</td>
+      <td>CFSAN</td>
+      <td>3534</td>
+      <td>3629</td>
+      <td>B</td>
+      <td>HA: 33, 17</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>2355</td>
+      <td><a href="{{ url_for('images', file_name='DFPST0010.bmp') }}">View</a></td>
+      <td>45.052/-82.48</td>
+      <td>USA</td>
+      <td>Great Lakes</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=196></th>
+      <td>CDC-CR2</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>3656</td>
+      <td>3744</td>
+      <td>A, B</td>
+      <td>ORF: X2, X1; HA: 33, 17, 70</td>
+      <td>None</td>
+      <td>10000, 10000</td>
+      <td>10000, 10000</td>
+      <td><a href="{{ url_for('images', file_name='CDC-CR2.1.bmp') }}">Toxin1  </a><a href="{{ url_for('images', file_name='CDC-CR2.2.bmp') }}">Toxin2  </a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=197></th>
+      <td>SOKR-44E1</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Shoreline Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3483</td>
+      <td>3576</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SOKR-44E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=198></th>
+      <td>SA1207E1</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>3339</td>
+      <td>3416</td>
+      <td>E</td>
+      <td>ORF: X3, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SA1207E1.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=199></th>
+      <td>DFPST0014</td>
+      <td>1967</td>
+      <td>Clinical</td>
+      <td>marine sediment</td>
+      <td>SRA</td>
+      <td>CFSAN</td>
+      <td>3508</td>
+      <td>3602</td>
+      <td>B</td>
+      <td>HA: 33, 17, 70</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='DFPST0014.bmp') }}">View</a></td>
+      <td>41.866/-123.3</td>
+      <td>USA</td>
+      <td>Pacific coast</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=200></th>
+      <td>VO0202E1TC</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Gastric Liquid</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3318</td>
+      <td>3393</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='VO0202E1TC.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Tasiujaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=201></th>
+      <td>SWKR0402E2</td>
+      <td>2004</td>
+      <td>Clinical</td>
+      <td>Seawater</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3576</td>
+      <td>3652</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>9280</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SWKR0402E2.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=202></th>
+      <td>FWSKR4802E1</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Freshwater Sediment</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3498</td>
+      <td>3574</td>
+      <td>E, E</td>
+      <td>ORF: X3, X2, X1; ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000, 10000</td>
+      <td>10000, 10000</td>
+      <td><a href="{{ url_for('images', file_name='FWSKR4802E1.1.bmp') }}">Toxin1  </a><a href="{{ url_for('images', file_name='FWSKR4802E1.2.bmp') }}">Toxin2  </a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=203></th>
+      <td>BKT2873</td>
+      <td>2007</td>
+      <td>Clinical</td>
+      <td>None</td>
+      <td>SRA</td>
+      <td>National Veterinary Institute (SVA)</td>
+      <td>2950</td>
+      <td>3103</td>
+      <td>C/D</td>
+      <td>HA: 70, 17</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='BKT2873.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=204></th>
+      <td>DFPST0033</td>
+      <td>1974</td>
+      <td>Clinical</td>
+      <td>tomato juice</td>
+      <td>SRA</td>
+      <td>CFSAN</td>
+      <td>3554</td>
+      <td>3638</td>
+      <td>A</td>
+      <td>HA: 70, 17, 33</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='DFPST0033.bmp') }}">View</a></td>
+      <td>44.068/-114.7</td>
+      <td>USA</td>
+      <td>ID</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=205></th>
+      <td>TRK02-02E2</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Terrestrial Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3611</td>
+      <td>3685</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>9281</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='TRK02-02E2.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=206></th>
+      <td>SW280E</td>
+      <td>2001</td>
+      <td>Clinical</td>
+      <td>Seawater</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3344</td>
+      <td>3436</td>
+      <td>E</td>
+      <td>None</td>
+      <td>None</td>
+      <td>2730</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SW280E.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=207></th>
+      <td>SOKR-46E3</td>
+      <td>2004</td>
+      <td>Clinical</td>
+      <td>Marine Sediment</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3566</td>
+      <td>3641</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>9276</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SOKR-46E3.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=208></th>
+      <td>SU1259</td>
+      <td>1996</td>
+      <td>Clinical</td>
+      <td>soil</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3915</td>
+      <td>3993</td>
+      <td>A</td>
+      <td>ORF: X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SU1259.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=209></th>
+      <td>SU1074</td>
+      <td>1998</td>
+      <td>Clinical</td>
+      <td>soil</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3747</td>
+      <td>3822</td>
+      <td>A</td>
+      <td>ORF: X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SU1074.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=210></th>
+      <td>AM1195</td>
+      <td>1987</td>
+      <td>Clinical</td>
+      <td>infant botulism</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3998</td>
+      <td>4069</td>
+      <td>B</td>
+      <td>HA: 33, 17, 70</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='AM1195.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=211></th>
+      <td>FE1206E1FY</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>3354</td>
+      <td>3468</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=212></th>
+      <td>GA1101E1BB</td>
+      <td>2011</td>
+      <td>Clinical</td>
+      <td>Gastric Liquid</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3551</td>
+      <td>3642</td>
+      <td>E</td>
+      <td>None</td>
+      <td>None</td>
+      <td>9464</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='GA1101E1BB.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=213></th>
+      <td>SWKR24E1</td>
+      <td>2004</td>
+      <td>Clinical</td>
+      <td>Seawater</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3397</td>
+      <td>3488</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SWKR24E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=214></th>
+      <td>FE0801E1IT</td>
+      <td>2008</td>
+      <td>Clinical</td>
+      <td>Feces</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3307</td>
+      <td>3401</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='FE0801E1IT.bmp') }}">View</a></td>
+      <td>62.847/-69.86</td>
+      <td>Canada</td>
+      <td>Kimmirut (Baffin Island) - Nunavut</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=215></th>
+      <td>ATCC-17843--B5-</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>None</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3594</td>
+      <td>3653</td>
+      <td>B</td>
+      <td>HA: 33, 17, 70</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='ATCC-17843--B5-.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=216></th>
+      <td>GA9811E2MS</td>
+      <td>1998</td>
+      <td>Clinical</td>
+      <td>Gastric Liquid</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3496</td>
+      <td>3588</td>
+      <td>E</td>
+      <td>None</td>
+      <td>None</td>
+      <td>2749</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='GA9811E2MS.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=217></th>
+      <td>SU0994</td>
+      <td>1994</td>
+      <td>Clinical</td>
+      <td>soil</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>4100</td>
+      <td>4182</td>
+      <td>A</td>
+      <td>ORF: X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SU0994.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=218></th>
+      <td>MI69709E</td>
+      <td>1997</td>
+      <td>Clinical</td>
+      <td>Seal Igunaq</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3554</td>
+      <td>3637</td>
+      <td>E</td>
+      <td>None</td>
+      <td>None</td>
+      <td>196</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='MI69709E.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kangiqsualujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=219></th>
+      <td>SWKR38E1</td>
+      <td>2004</td>
+      <td>Clinical</td>
+      <td>Seawater</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3574</td>
+      <td>3642</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SWKR38E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=220></th>
+      <td>SOKR-3602E1</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Shoreline Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3699</td>
+      <td>3792</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SOKR-3602E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=221></th>
+      <td>K15</td>
+      <td>1995</td>
+      <td>Clinical</td>
+      <td>trout</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3683</td>
+      <td>3774</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='K15.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=222></th>
+      <td>FWSK02-05E1</td>
+      <td>2004</td>
+      <td>Clinical</td>
+      <td>Freshwater Sediment</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3351</td>
+      <td>3439</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>9277</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='FWSK02-05E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=223></th>
+      <td>211-VH-Dolman</td>
+      <td>1949</td>
+      <td>Clinical</td>
+      <td>Pickled Herring</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3368</td>
+      <td>3462</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='211-VH-Dolman.bmp') }}">View</a></td>
+      <td>45.638/-122.6</td>
+      <td>Canada</td>
+      <td>Vancouver (Pacific Coast) - BC</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=224></th>
+      <td>SO329E2</td>
+      <td>2001</td>
+      <td>Clinical</td>
+      <td>Shoreline Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3401</td>
+      <td>3495</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SO329E2.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=225></th>
+      <td>Iwate2008</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>None</td>
+      <td>SRA</td>
+      <td>NIID</td>
+      <td>3650</td>
+      <td>3736</td>
+      <td>A, B</td>
+      <td>ORF: X2, X1; HA: 33, 17, 70</td>
+      <td>None</td>
+      <td>10000, 10000</td>
+      <td>10000, 10000</td>
+      <td><a href="{{ url_for('images', file_name='Iwate2008.1.bmp') }}">Toxin1  </a><a href="{{ url_for('images', file_name='Iwate2008.2.bmp') }}">Toxin2  </a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=226></th>
+      <td>BE0211E3</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Beluga</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3515</td>
+      <td>3591</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=227></th>
+      <td>SOKR-44E3</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Shoreline Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3338</td>
+      <td>3415</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SOKR-44E3.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=228></th>
+      <td>Prevot-910</td>
+      <td>1953</td>
+      <td>Clinical</td>
+      <td>bovine botulism</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3675</td>
+      <td>3731</td>
+      <td>A</td>
+      <td>HA: 70, 17, 33</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='Prevot-910.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=229></th>
+      <td>610F</td>
+      <td>1966</td>
+      <td>Clinical</td>
+      <td>Salmon</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3598</td>
+      <td>3712</td>
+      <td>F</td>
+      <td>None</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='610F.bmp') }}">View</a></td>
+      <td>47.443/-120.8</td>
+      <td>USA</td>
+      <td>Columbia River - Oregon (Pacific Coast)</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=230></th>
+      <td>FWSKR40E1</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Freshwater Sediment</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3504</td>
+      <td>3598</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>9278</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='FWSKR40E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=231></th>
+      <td>SOKR-27E1</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Terrestrial Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3575</td>
+      <td>3663</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SOKR-27E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=232></th>
+      <td>MI9507E</td>
+      <td>1995</td>
+      <td>Clinical</td>
+      <td>Seal Misiraq</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3508</td>
+      <td>3592</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kangiqsualujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=233></th>
+      <td>PBKR-41E1</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Peat Bog</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3540</td>
+      <td>3618</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>9282</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='PBKR-41E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=234></th>
+      <td>SU1304</td>
+      <td>1998</td>
+      <td>Clinical</td>
+      <td>soil</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>4116</td>
+      <td>4196</td>
+      <td>F, A</td>
+      <td>None; None</td>
+      <td>None</td>
+      <td>1538, 2497</td>
+      <td>10000, 10000</td>
+      <td><a href="{{ url_for('images', file_name='SU1304.1.bmp') }}">Toxin1  </a><a href="{{ url_for('images', file_name='SU1304.2.bmp') }}">Toxin2  </a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=235></th>
+      <td>CDC-KA-95B</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>None</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3564</td>
+      <td>3609</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='CDC-KA-95B.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=236></th>
+      <td>AM553</td>
+      <td>1981</td>
+      <td>Clinical</td>
+      <td>None</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3993</td>
+      <td>4058</td>
+      <td>B</td>
+      <td>HA: 17, 70</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='AM553.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=237></th>
+      <td>MU8903E</td>
+      <td>1989</td>
+      <td>Clinical</td>
+      <td>Muktuk</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3503</td>
+      <td>3592</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='MU8903E.bmp') }}">View</a></td>
+      <td>69.350/-124.0</td>
+      <td>Canada</td>
+      <td>Paulatuk - Northwest Territories</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=238></th>
+      <td>SOKR-24E3</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Marine Sediment</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3444</td>
+      <td>3521</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SOKR-24E3.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=239></th>
+      <td>FE0005EJT</td>
+      <td>2000</td>
+      <td>Clinical</td>
+      <td>Feces</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3301</td>
+      <td>3393</td>
+      <td>E</td>
+      <td>None</td>
+      <td>None</td>
+      <td>2672</td>
+      <td>4763</td>
+      <td><a href="{{ url_for('images', file_name='FE0005EJT.bmp') }}">View</a></td>
+      <td>68.360/-133.7</td>
+      <td>Canada</td>
+      <td>Inuvik - Northwest Territories</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=240></th>
+      <td>Miyagi2006-01</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>None</td>
+      <td>SRA</td>
+      <td>NIID</td>
+      <td>4124</td>
+      <td>4201</td>
+      <td>A</td>
+      <td>None</td>
+      <td>None</td>
+      <td>322</td>
+      <td>284</td>
+      <td><a href="{{ url_for('images', file_name='Miyagi2006-01.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=241></th>
+      <td>DFPST0005</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>None</td>
+      <td>SRA</td>
+      <td>CFSAN</td>
+      <td>3779</td>
+      <td>3860</td>
+      <td>B</td>
+      <td>HA: 33, 17, 70</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='DFPST0005.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=242></th>
+      <td>FE9909ERG</td>
+      <td>1999</td>
+      <td>Clinical</td>
+      <td>Feces</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3298</td>
+      <td>3390</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='FE9909ERG.bmp') }}">View</a></td>
+      <td>68.360/-133.7</td>
+      <td>Canada</td>
+      <td>Inuvik - Northwest Territories</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=243></th>
+      <td>MI59709E</td>
+      <td>1997</td>
+      <td>Clinical</td>
+      <td>Seal Igunaq</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3616</td>
+      <td>3706</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>9276</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='MI59709E.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kangiqsualujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=244></th>
+      <td>SU0945</td>
+      <td>1992</td>
+      <td>Clinical</td>
+      <td>soil</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>4392</td>
+      <td>4472</td>
+      <td>A</td>
+      <td>ORF: X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SU0945.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=245></th>
+      <td>DFPST0015</td>
+      <td>1973</td>
+      <td>Clinical</td>
+      <td>commercially canned marinated mushrooms</td>
+      <td>SRA</td>
+      <td>CFSAN</td>
+      <td>3503</td>
+      <td>3595</td>
+      <td>B</td>
+      <td>HA: 33, 17, 70</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='DFPST0015.bmp') }}">View</a></td>
+      <td>45.501/-73.56</td>
+      <td>Canada</td>
+      <td>Montreal</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=246></th>
+      <td>DFPST0009</td>
+      <td>1985</td>
+      <td>Clinical</td>
+      <td>fecal stools</td>
+      <td>SRA</td>
+      <td>CFSAN</td>
+      <td>3690</td>
+      <td>3768</td>
+      <td>B</td>
+      <td>HA: 17, 70</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='DFPST0009.bmp') }}">View</a></td>
+      <td>49.282/-123.1</td>
+      <td>Canada</td>
+      <td>Vancouver - British Columbia</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=247></th>
+      <td>FE9604ENT</td>
+      <td>1996</td>
+      <td>Clinical</td>
+      <td>Feces</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3355</td>
+      <td>3448</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>9276</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='FE9604ENT.bmp') }}">View</a></td>
+      <td>60.752/-69.51</td>
+      <td>Canada</td>
+      <td>Quaqtaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=248></th>
+      <td>DFPST0011</td>
+      <td>1975</td>
+      <td>Clinical</td>
+      <td>fresh mushrooms</td>
+      <td>SRA</td>
+      <td>CFSAN</td>
+      <td>3793</td>
+      <td>3864</td>
+      <td>B</td>
+      <td>HA: 17, 70</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='DFPST0011.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=249></th>
+      <td>MU9708EJG-F236</td>
+      <td>1997</td>
+      <td>Clinical</td>
+      <td>Muktuk</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3637</td>
+      <td>3711</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>68.219/-135.0</td>
+      <td>Canada</td>
+      <td>Aklavik - Northwest Territories</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=250></th>
+      <td>E-RUSS</td>
+      <td>~1936</td>
+      <td>Clinical</td>
+      <td>Sturgeon intestine</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3438</td>
+      <td>3525</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='E-RUSS.bmp') }}">View</a></td>
+      <td>46.011/36.381</td>
+      <td>Ukraine</td>
+      <td>Sea of Azov</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=251></th>
+      <td>SU1575NT</td>
+      <td>1999</td>
+      <td>Clinical</td>
+      <td>soil - colony variant of SU1575</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3475</td>
+      <td>3548</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=252></th>
+      <td>29401-CD</td>
+      <td>2008</td>
+      <td>Clinical</td>
+      <td>Poultry Farm</td>
+      <td>SRA</td>
+      <td>ParisUni</td>
+      <td>2916</td>
+      <td>3015</td>
+      <td>C/D</td>
+      <td>HA: 17</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='29401-CD.bmp') }}">View</a></td>
+      <td>47.885/-2.900</td>
+      <td>France</td>
+      <td>Morbihan</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=253></th>
+      <td>SOKR-23E1</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Marine Sediment</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3527</td>
+      <td>3608</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SOKR-23E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=254></th>
+      <td>KAPB-8</td>
+      <td>1981</td>
+      <td>Clinical</td>
+      <td>Salted whitefish</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3531</td>
+      <td>3624</td>
+      <td>B</td>
+      <td>HA: 33, 17, 70</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='KAPB-8.bmp') }}">View</a></td>
+      <td>36.778/-119.4</td>
+      <td>USA</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=255></th>
+      <td>DFPST0007</td>
+      <td>1972</td>
+      <td>Clinical</td>
+      <td>canned mushrooms</td>
+      <td>SRA</td>
+      <td>CFSAN</td>
+      <td>3786</td>
+      <td>3866</td>
+      <td>B</td>
+      <td>HA: 17, 70</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='DFPST0007.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=256></th>
+      <td>38028-CD</td>
+      <td>2008</td>
+      <td>Clinical</td>
+      <td>Poultry Farm</td>
+      <td>SRA</td>
+      <td>ParisUni</td>
+      <td>2993</td>
+      <td>3099</td>
+      <td>C/D</td>
+      <td>HA: 17</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>6763</td>
+      <td><a href="{{ url_for('images', file_name='38028-CD.bmp') }}">View</a></td>
+      <td>47.925/-1.900</td>
+      <td>France</td>
+      <td>Ille et Vilaine</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=257></th>
+      <td>Miyagi2006</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>None</td>
+      <td>SRA</td>
+      <td>NIID</td>
+      <td>3775</td>
+      <td>3854</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=258></th>
+      <td>AM370-2</td>
+      <td>1979</td>
+      <td>Clinical</td>
+      <td>salted fish</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>4004</td>
+      <td>4074</td>
+      <td>B</td>
+      <td>HA: 33, 17, 70</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='AM370-2.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=259></th>
+      <td>SO305E2</td>
+      <td>2003</td>
+      <td>Clinical</td>
+      <td>Shoreline Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3581</td>
+      <td>3667</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Inukjuak (East Hudson Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=260></th>
+      <td>BKT75002</td>
+      <td>2010</td>
+      <td>Clinical</td>
+      <td>liver</td>
+      <td>SRA</td>
+      <td>National Veterinary Institute (SVA)</td>
+      <td>2955</td>
+      <td>3053</td>
+      <td>C/D</td>
+      <td>HA: 70, 17</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='BKT75002.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=261></th>
+      <td>DFPST0001</td>
+      <td>1972</td>
+      <td>Clinical</td>
+      <td>canned mushrooms</td>
+      <td>SRA</td>
+      <td>CFSAN</td>
+      <td>3787</td>
+      <td>3867</td>
+      <td>B</td>
+      <td>HA: 17, 70</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='DFPST0001.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=262></th>
+      <td>IG0201E2BC</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Walrus Igunaq</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3320</td>
+      <td>3414</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='IG0201E2BC.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Tasiujaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=263></th>
+      <td>GA0811E1IT</td>
+      <td>2008</td>
+      <td>Clinical</td>
+      <td>Gastric Liquid</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3299</td>
+      <td>3375</td>
+      <td>E</td>
+      <td>None</td>
+      <td>None</td>
+      <td>1648</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='GA0811E1IT.bmp') }}">View</a></td>
+      <td>65.421/-70.96</td>
+      <td>Canada</td>
+      <td>Baffin Island - Nunavut</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=264></th>
+      <td>SO303E5</td>
+      <td>2001</td>
+      <td>Clinical</td>
+      <td>Shoreline Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3551</td>
+      <td>3644</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SO303E5.bmp') }}">View</a></td>
+      <td>56.552/-76.55</td>
+      <td>Canada</td>
+      <td>Umiujaq (East Hudson Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=265></th>
+      <td>DFPST0013</td>
+      <td>1968</td>
+      <td>Clinical</td>
+      <td>marine sediment</td>
+      <td>SRA</td>
+      <td>CFSAN</td>
+      <td>3587</td>
+      <td>3681</td>
+      <td>B</td>
+      <td>HA: 33, 17, 70</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='DFPST0013.bmp') }}">View</a></td>
+      <td>41.866/-123.3</td>
+      <td>USA</td>
+      <td>Pacific coast</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=266></th>
+      <td>AM370</td>
+      <td>1979</td>
+      <td>Clinical</td>
+      <td>salted fish</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3998</td>
+      <td>4058</td>
+      <td>B</td>
+      <td>HA: 33, 17, 70</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='AM370.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=267></th>
+      <td>SW279E</td>
+      <td>2001</td>
+      <td>Clinical</td>
+      <td>Seawater</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3339</td>
+      <td>3432</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>9276</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SW279E.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=268></th>
+      <td>GA9709ENS</td>
+      <td>1997</td>
+      <td>Clinical</td>
+      <td>Gastric Liquid</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3520</td>
+      <td>3600</td>
+      <td>E</td>
+      <td>None</td>
+      <td>None</td>
+      <td>1615</td>
+      <td>7882</td>
+      <td><a href="{{ url_for('images', file_name='GA9709ENS.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kangiqsualujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=269></th>
+      <td>L-572</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>forest soil</td>
+      <td>SRA</td>
+      <td>NAU</td>
+      <td>3479</td>
+      <td>3534</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='L-572.bmp') }}">View</a></td>
+      <td>38.907/-77.03</td>
+      <td>USA</td>
+      <td>Washington</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=270></th>
+      <td>CJ5</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>3852</td>
+      <td>3958</td>
+      <td>A</td>
+      <td>ORF: X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='CJ5.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=271></th>
+      <td>LNC5-DC</td>
+      <td>2013</td>
+      <td>Clinical</td>
+      <td>Cattle Farm</td>
+      <td>SRA</td>
+      <td>ParisUni</td>
+      <td>3013</td>
+      <td>3110</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>-22.13/166.35</td>
+      <td>New Caledonia</td>
+      <td>Paita</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=272></th>
+      <td>CJ0611A1</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>3558</td>
+      <td>3673</td>
+      <td>A, B</td>
+      <td>ORF: X2, X1; HA: 33, 17, 70</td>
+      <td>None</td>
+      <td>10000, 10000</td>
+      <td>10000, 10000</td>
+      <td><a href="{{ url_for('images', file_name='CJ0611A1.1.bmp') }}">Toxin1  </a><a href="{{ url_for('images', file_name='CJ0611A1.2.bmp') }}">Toxin2  </a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=273></th>
+      <td>SOKR-50E1</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Terrestrial Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3395</td>
+      <td>3481</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SOKR-50E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=274></th>
+      <td>FWSK02-01E3</td>
+      <td>2004</td>
+      <td>Clinical</td>
+      <td>Freshwater Sediment</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3335</td>
+      <td>3420</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='FWSK02-01E3.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=275></th>
+      <td>FWSK02-05E2</td>
+      <td>2004</td>
+      <td>Clinical</td>
+      <td>Freshwater Sediment</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3467</td>
+      <td>3539</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='FWSK02-05E2.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=276></th>
+      <td>SOKR-20E1</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Freshwater Sediment</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3613</td>
+      <td>3691</td>
+      <td>E</td>
+      <td>None</td>
+      <td>None</td>
+      <td>2593</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SOKR-20E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=277></th>
+      <td>MU9708EJG-F235</td>
+      <td>1997</td>
+      <td>Clinical</td>
+      <td>Muktuk</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3643</td>
+      <td>3723</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='MU9708EJG-F235.bmp') }}">View</a></td>
+      <td>68.219/-135.0</td>
+      <td>Canada</td>
+      <td>Aklavik - Northwest Territories</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=278></th>
+      <td>FE0202E1TC</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Feces</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3311</td>
+      <td>3401</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='FE0202E1TC.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Tasiujaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=279></th>
+      <td>ATCC-7949</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>canned onions</td>
+      <td>SRA</td>
+      <td>cBio Inc</td>
+      <td>3663</td>
+      <td>3747</td>
+      <td>B</td>
+      <td>HA: 33, 17, 70</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='ATCC-7949.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=280></th>
+      <td>SO304E2</td>
+      <td>2003</td>
+      <td>Clinical</td>
+      <td>Shoreline Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3646</td>
+      <td>3720</td>
+      <td>E</td>
+      <td>None</td>
+      <td>None</td>
+      <td>2679</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SO304E2.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Inukjuak (East Hudson Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=281></th>
+      <td>TRK02-08E1</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Terrestrial Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3740</td>
+      <td>3796</td>
+      <td>E</td>
+      <td>ORF: X1</td>
+      <td>None</td>
+      <td>5974</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='TRK02-08E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=282></th>
+      <td>50867-CD</td>
+      <td>2008</td>
+      <td>Clinical</td>
+      <td>Poultry Farm</td>
+      <td>SRA</td>
+      <td>ParisUni</td>
+      <td>2957</td>
+      <td>3051</td>
+      <td>C/D</td>
+      <td>HA: 17</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>5688</td>
+      <td><a href="{{ url_for('images', file_name='50867-CD.bmp') }}">View</a></td>
+      <td>47.676/1.4159</td>
+      <td>France</td>
+      <td>Loir et Cher</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=283></th>
+      <td>SOKR-43E2</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Terrestrial Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3420</td>
+      <td>3513</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>9278</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SOKR-43E2.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=284></th>
+      <td>MI19709E</td>
+      <td>1997</td>
+      <td>Clinical</td>
+      <td>Seal Igunaq</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3551</td>
+      <td>3642</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>9276</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='MI19709E.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kangiqsualujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=285></th>
+      <td>49511-CD</td>
+      <td>2008</td>
+      <td>Clinical</td>
+      <td>Poultry Farm</td>
+      <td>SRA</td>
+      <td>ParisUni</td>
+      <td>2974</td>
+      <td>3071</td>
+      <td>C/D</td>
+      <td>HA: 17</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>6285</td>
+      <td><a href="{{ url_for('images', file_name='49511-CD.bmp') }}">View</a></td>
+      <td>48.510/-3.326</td>
+      <td>France</td>
+      <td>Cotes d Armor</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=286></th>
+      <td>DFPST0004</td>
+      <td>None</td>
+      <td>Clinical</td>
+      <td>canned shallots</td>
+      <td>SRA</td>
+      <td>CFSAN</td>
+      <td>3612</td>
+      <td>3698</td>
+      <td>B</td>
+      <td>HA: 33, 17, 70</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='DFPST0004.bmp') }}">View</a></td>
+      <td>None/None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=287></th>
+      <td>RSKR-68E2</td>
+      <td>2004</td>
+      <td>Clinical</td>
+      <td>Coastal Rock</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3694</td>
+      <td>3780</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=288></th>
+      <td>71840-CD</td>
+      <td>2008</td>
+      <td>Clinical</td>
+      <td>Poultry Farm</td>
+      <td>SRA</td>
+      <td>ParisUni</td>
+      <td>2876</td>
+      <td>2973</td>
+      <td>C/D</td>
+      <td>HA: 17</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='71840-CD.bmp') }}">View</a></td>
+      <td>47.291/-0.487</td>
+      <td>France</td>
+      <td>Maine et Loir</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=289></th>
+      <td>58752-CD</td>
+      <td>2008</td>
+      <td>Clinical</td>
+      <td>Poultry Farm</td>
+      <td>SRA</td>
+      <td>ParisUni</td>
+      <td>2866</td>
+      <td>2961</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>46.661/-1.448</td>
+      <td>France</td>
+      <td>Vendee</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=290></th>
+      <td>MU0005EJT</td>
+      <td>2000</td>
+      <td>Clinical</td>
+      <td>Muktuk</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3290</td>
+      <td>3375</td>
+      <td>E</td>
+      <td>None</td>
+      <td>None</td>
+      <td>4867</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='MU0005EJT.bmp') }}">View</a></td>
+      <td>68.360/-133.7</td>
+      <td>Canada</td>
+      <td>Inuvik - Northwest Territories</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=291></th>
+      <td>SOKR-33E1</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Peat Bog</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3547</td>
+      <td>3638</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='SOKR-33E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=292></th>
+      <td>SOKR-22E3</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Freshwater Sediment</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3535</td>
+      <td>3608</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=293></th>
+      <td>ATCC-23387</td>
+      <td>1965</td>
+      <td>Clinical</td>
+      <td>Marine sediment</td>
+      <td>SRA</td>
+      <td>cBio Inc</td>
+      <td>3648</td>
+      <td>3742</td>
+      <td>F</td>
+      <td>None</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='ATCC-23387.bmp') }}">View</a></td>
+      <td>44.324/-124.1</td>
+      <td>USA</td>
+      <td>North America - Pacific Coast</td>
+    </tr>
+    <tr>
+      <th><input type=checkbox name=check value=294></th>
+      <td>TRK02-02E1</td>
+      <td>2002</td>
+      <td>Clinical</td>
+      <td>Terrestrial Soil</td>
+      <td>HC</td>
+      <td>phaC</td>
+      <td>3495</td>
+      <td>3587</td>
+      <td>E</td>
+      <td>ORF: X3, X2, X1</td>
+      <td>None</td>
+      <td>10000</td>
+      <td>10000</td>
+      <td><a href="{{ url_for('images', file_name='TRK02-02E1.bmp') }}">View</a></td>
+      <td>52.939/-73.54</td>
+      <td>Canada</td>
+      <td>Kuujjuaq (Ungava Bay) - Quebec</td>
+    </tr>
+  </tbody>
+</table>
+        </div>
+    </form>
+    {% endblock %})
+    

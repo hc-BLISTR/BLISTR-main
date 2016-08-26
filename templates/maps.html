@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+    
+            {% block content %}
+              <form action="" method="POST" name="result">
+              {{ form.hidden_tag() }}
+              {{ form.csrf_token }}
+              Map type: {{ form.toxin_type }}
+              <input type="submit" value="Submit">
+              </form>
+            
+              <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+              <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+              <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+            
+              <script type=text/javascript src="{{  url_for('static', filename='markerclusterer.js') }}"></script>
+              <script type=text/javascript src="{{  url_for('static', filename='easyLocator.js') }}"></script>
+              <link rel=stylesheet type=text/css href="{{ url_for('static', filename='easyLocator.css') }}">
+              
+            
+            <div id="locatorList" style="height:875px"></div>
+            	<script>
+                  var data = [{title: 'DB2 type:B',
+            description: 'Source information: Sediment, Institution: HC, Author: phaC, Source type: Clinical',
+            lat: 41.866667,
+            lng: -123.383333},
+{title: 'Hall-80 type:B',
+            description: 'Source information: beans (foodborne isolate), Institution: SRA, Author: NAU, Source type: Clinical',
+            lat: 40.6331249,
+            lng: -89.3985283},
+{title: 'Eklund-17B type:B',
+            description: 'Source information: Marine Sediment, Institution: HC, Author: phaC, Source type: Clinical',
+            lat: 38.9071923,
+            lng: -77.0368707},
+{title: 'CDC-795 type:B',
+            description: 'Source information: None, Institution: SRA, Author: NAU, Source type: Clinical',
+            lat: 44.3148443,
+            lng: -85.6023643},
+{title: 'KAPB-3 type:B',
+            description: 'Source information: Salted whitefish, Institution: HC, Author: phaC, Source type: Clinical',
+            lat: 36.778261,
+            lng: -119.4179324},
+{title: 'DFPST0017 type:B',
+            description: 'Source information: blackberry jam, Institution: SRA, Author: CFSAN, Source type: Clinical',
+            lat: 37.8393332,
+            lng: -84.2700179},
+{title: 'DFPST0002 type:B',
+            description: 'Source information: blackberries, Institution: SRA, Author: CFSAN, Source type: Clinical',
+            lat: 37.8393332,
+            lng: -84.2700179},
+{title: 'DFPST0003 type:B',
+            description: 'Source information: stool, Institution: SRA, Author: CFSAN, Source type: Clinical',
+            lat: 32.3182314,
+            lng: -86.902298},
+{title: 'CFSAN024410 type:B',
+            description: 'Source information: infant stool, Institution: SRA, Author: CFSAN, Source type: Clinical',
+            lat: 36.778261,
+            lng: -119.4179324},
+{title: 'DFPST0010 type:B',
+            description: 'Source information: kapchunka, Institution: SRA, Author: CFSAN, Source type: Clinical',
+            lat: 45.0522366,
+            lng: -82.4846115},
+{title: 'DFPST0014 type:B',
+            description: 'Source information: marine sediment, Institution: SRA, Author: CFSAN, Source type: Clinical',
+            lat: 41.866667,
+            lng: -123.383333},
+{title: 'DFPST0015 type:B',
+            description: 'Source information: commercially canned marinated mushrooms, Institution: SRA, Author: CFSAN, Source type: Clinical',
+            lat: 45.5016889,
+            lng: -73.567256},
+{title: 'DFPST0009 type:B',
+            description: 'Source information: fecal stools, Institution: SRA, Author: CFSAN, Source type: Clinical',
+            lat: 49.2827291,
+            lng: -123.1207375},
+{title: 'KAPB-8 type:B',
+            description: 'Source information: Salted whitefish, Institution: HC, Author: phaC, Source type: Clinical',
+            lat: 36.778261,
+            lng: -119.4179324},
+{title: 'DFPST0013 type:B',
+            description: 'Source information: marine sediment, Institution: SRA, Author: CFSAN, Source type: Clinical',
+            lat: 41.866667,
+            lng: -123.383333}
+                  ];
+                  $( document ).ready(function() {
+                    $('#locatorList').easyLocator({
+                       myLocations: data
+                    });
+                  });
+               </script>
+            
+            {% endblock %}
+        

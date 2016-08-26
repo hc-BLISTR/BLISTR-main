@@ -1,0 +1,9 @@
+$('#table_edits').click(function(){
+    var myTxt = $('.sub_type').html();
+    $.ajax({
+        type: 'post',
+        url:  'some_php_file.php',
+        data: 'varname=' +myTxt
+    });
+
+});

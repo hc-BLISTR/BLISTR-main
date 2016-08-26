@@ -1,0 +1,45 @@
+<html>
+  <head>
+  {% if title %}
+  <title>{{ title }} - BLISTR</title>
+  {% else %}
+  <title>Welcome to BLISTR</title>
+  {% endif %}
+  {% if title == "Home" %}
+  <body background="{{ url_for('static', filename='background_Flag.jpg') }}">
+  {% else %}
+  <body background="{{ url_for('static', filename='background.jpg') }}">
+  {% endif %}
+  <script type=text/javascript src="{{  url_for('static', filename='sorttable.js') }}"></script>
+  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='table_style.css') }}">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  
+  </head>
+  <body>
+  <font size="4">
+  <b>
+    <div>BLISTR: 
+    	<a href="{{ url_for('home') }}">Upload</a>
+    	<a href="{{ url_for('tables') }}">Tables</a>
+    	<a href="{{ url_for('genomes') }}">Genomes</a>
+    	<a href="{{ url_for('toxin_trees') }}">Toxin Trees</a>
+    	<a href="{{ url_for('subtype_trees') }}">Subtype Trees</a>
+    	<a href="{{ url_for('issues') }}">16S Issues</a>
+    	<a href="{{ url_for('maps') }}">Maps</a>
+    </div>
+    </b>
+    </font>
+    <hr>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+        {% for message in messages %}
+            <li>{{ message }} </li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+      {% endwith %}
+
+    {% block content %}{% endblock %}
+  </body>
+</html>

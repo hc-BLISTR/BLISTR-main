@@ -1,0 +1,28 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<title>Genome Tree</title>
+<form action="" method="POST" name="result">
+{{ form.hidden_tag() }}
+
+<div class=page>
+  <h1>{{ title }}</h1>
+  {{ form.tree }}<br>
+  
+  
+  {% set count = 0 %}
+  {% for table in tables %}
+  	{% if count == 1 %}
+  		<font size="5"><b>Search For:</b></font> {{ form.search(size=30, maxlength=400) }}
+  		<input type=submit value="Search">
+  	{% endif %}  
+    {{ table|safe }}
+    {% set count = count + 1 %}
+  {% endfor %}
+
+</div>
+</form>
+
+
+{% endblock %}

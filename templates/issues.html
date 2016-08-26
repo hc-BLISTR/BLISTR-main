@@ -1,0 +1,42 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<title>16S Issues</title>
+<form action="" method="POST" name="result">
+{{ form.hidden_tag() }}
+<script language="JavaScript">
+    function toggle(source) {
+      checkboxes = document.getElementsByName('check');
+      for(var i=0, n=checkboxes.length;i<n;i++) {
+        checkboxes[i].checked = source.checked;
+      }
+    }
+    </script>
+
+
+<div class=page>
+  <h1>{{ title }}</h1>
+  <input type=submit value=Download>
+  <font size="4">
+  Contig File: {{ form.contig }}
+  Toxin File: {{ form.toxin }}
+  Toxin++ File: {{ form.toxin_extra }}
+  Select All Genomes: <input type="checkbox" onClick="toggle(this)" />
+  <br>
+  {{ form.export }}
+  <br>
+  Search For: {{ form.search(size=30, maxlength=400) }}
+  </font>
+  <input type=submit value=Search>
+  
+  
+  
+  {% for table in tables %}
+    {{ table|safe }}
+  {% endfor %}
+</div>
+</form>
+
+
+{% endblock %}

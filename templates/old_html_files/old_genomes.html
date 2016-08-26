@@ -1,0 +1,32 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<title>Genomes</title>
+<form action="" method="POST" name="result">
+{{ form.hidden_tag() }}
+
+<div class=page>
+  <h1>{{ title }}</h1>
+  <input type=submit value=Download>
+  Contig File: {{ form.contig }}
+  Toxin File: {{ form.toxin }}
+  Toxin++ File: {{ form.toxin_extra }}
+  Full faa {{ form.fasta_faa }}
+  Full ffn {{ form.fasta_ffn }}
+  Toxin++ faa {{ form.toxin_faa }}
+  Toxin++ ffn {{ form.toxin_ffn }}
+  <br>
+  Search For: {{ form.search(size=30, maxlength=400) }}
+  <input type=submit value=Search>
+  
+  
+  
+  {% for table in tables %}
+    {{ table|safe }}
+  {% endfor %}
+</div>
+</form>
+
+
+{% endblock %}

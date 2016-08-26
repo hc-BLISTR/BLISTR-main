@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+  <script type=text/javascript src="{{  url_for('static', filename='markerclusterer.js') }}"></script>
+  <script type=text/javascript src="{{  url_for('static', filename='easyLocator.js') }}"></script>
+  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='easyLocator.css') }}">
+
+<div id="locatorList" style="height:900px"></div>
+	<script>      
+      var data = [{
+            title: 'Matagalpa',
+            description: 'pretty girls',
+            lat: 12.9232,
+            lng: -85.9206
+         },
+         {
+            title: 'Leon',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt',
+            lat: 75.432,
+            lng: -86.8747
+         }
+      ];
+      $( document ).ready(function() {
+        $('#locatorList').easyLocator({
+           myLocations: data
+        });
+      });
+   </script>
+
+{% endblock %}
+

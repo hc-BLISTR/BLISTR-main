@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+    {% block content %}
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script type="text/javascript">
+      var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
+    <script type="text/javascript">
+    
+      $(function() {
+        $("#submitBtn").click(function() {
+        	 var Gname1 = $('.Gname1').html(); 
+var sub_type1 = $('.sub_type1').html(); 
+var c_date1 = $('.c_date1').html(); 
+var s_type1 = $('.s_type1').html(); 
+var s_info1 = $('.s_info1').html(); 
+var inst1 = $('.inst1').html(); 
+var author1 = $('.author1').html(); 
+var lat_lng1 = $('.lat_lng1').html(); 
+var country1 = $('.country1').html(); 
+var region1 = $('.region1').html(); 
+
+         $.ajax({
+            type: "GET",
+            url: $SCRIPT_ROOT + "/echo/",
+            contentType: "application/json; charset=utf-8",
+            data: { Gname1:Gname1, sub_type1:sub_type1, c_date1:c_date1, s_type1:s_type1, s_info1:s_info1, inst1:inst1, author1:author1, lat_lng1:lat_lng1, country1:country1, region1:region1},
+                    success: function(data) {
+                    $('#echoResult').text(data.value);
+                }
+            });     
+        });
+      });
+    </script><strong><div id="echoResult"></div></strong><h1>Welcome to tables!!!</h1><br>
+    <table class="dataframe male">    
+        <thead>
+            <tr>
+                <th>Genome name</th>
+                <th>Toxin type</th>
+                <th>SubType</th>
+                <th>Collection date</th>
+                <th>Source type</th>
+                <th>Source information</th>
+                <th>Institution</th>
+                <th>Author</th>
+                <th>Largest contig</th>
+                <th># contigs</th>
+                <th># contigs (>= 1000 bp)</th>
+                <th>Total length (>= 0 bp)</th>
+                <th>GC (%)</th>
+                <th># N's per 100 kbp</th>
+                <th>Total length (>= 1000 bp)</th>
+                <th>Total length</th>
+                <th># contigs (>= 0 bp)</th>
+                <th>bp before toxin</th>
+                <th>bp after toxin</th>
+                <th>Addition Toxins</th>
+                <th>Toxin sequences</th>            
+                <th>Lat:Long</th>
+                <th>Country</th>
+                <th>Region</th>
+            </tr>
+        </thead>
+        <tbody>
+        
+    
+            <tr>
+                <td><a href="temp/temp1.fasta"><div class='Gname1'>Dwight</div></a></td>
+                <td>F</td>
+                <td><div class='sub_type1' contenteditable>None</div></td>
+                <td><div class='c_date1' contenteditable>None</div></td>
+                <td><div class='s_type1' contenteditable>None</div></td>
+                <td><div class='s_info1' contenteditable>None</div></td>
+                <td><div class='inst1' contenteditable>None</div></td>
+                <td><div class='author1' contenteditable>None</div></td>
+                <td>2040448</td>
+                <td>36</td>
+                <td>19</td>
+                <td>4083906</td>
+                <td>27.92</td>
+                <td>0.00</td>
+                <td>4071535</td>
+                <td>4083414</td>
+                <td>37</td>
+                <td>10000</td>
+                <td>10000</td>
+                <td>F, A</td>
+                <td><a href="temp/temptoxin1.fasta">Toxin, </a><a href="temp/temptoxin++1.fasta">Toxin++</a></td> 
+                <td><div class='lat_lng1' contenteditable>None:None</td>
+                <td><div class='country1' contenteditable>None</div></td>
+                <td><div class='region1' contenteditable>None</div></td>
+            </tr>
+        </tbody> 
+ </table> 
+    {{ form.submitBtn }}<br><br>
+    {% endblock %}

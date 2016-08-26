@@ -1,0 +1,33 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript">
+  var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+<script type="text/javascript">
+  $(function() {
+    $("#submitBtn").click(function() {
+    	var temp = $('.sub_type').html();
+         $.ajax({
+            type: "GET",
+            url: $SCRIPT_ROOT + "/echo/",
+            contentType: "application/json; charset=utf-8",
+            data: { sub_type: temp }
+        });     
+    });
+  });
+</script>
+
+<strong><div id="echoResult"></div></strong>
+
+  <h1>Welcome to tables!!!</h1><br>
+	<form action="" method="POST" name="table">
+		{{ table|safe }}
+	</form>
+
+<button type="button" id="submitBtn" name="submitBtn">Save Changes</button><br><br>
+{% endblock %}

@@ -1,0 +1,46 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<h1>BotuLinum In Silico Typing Resource</h1>
+  <font size="4">
+	<form action="" method="POST" name="result">
+      {{ form.hidden_tag() }}
+      <table>
+          <tr>
+          <br>
+              <b>Fasta file:</b>
+              {{ form.query(size=30, maxlength=400) }}
+              </tr><tr>
+          <p>Please fill out the following fields if you can:</p>
+          <p>Genome names are extracted from the input file name.
+          <br><br>Author: <span style="margin-left:5.43em">{{ form.author(size=20, maxlength=50) }}  
+          <br><br>Collection date: <span style="margin-left:1.75em">{{ form.collection_date(size=20, maxlength=20) }}  
+          <br><br>Institution of origin: <span style="margin-left:.25em">{{ form.institution(size=7, maxlength=7) }}  
+          <br><br>Source type: <span style="margin-left:3.05em">{{ form.clinical_or_environmental }}   
+          <br><br>Source information: {{ form.source_info(size=50, maxlength=200) }}
+          <br><br>Country: <span style="margin-left:4.9em">{{ form.country(size=20, maxlength=50) }}
+          <br><br>Region: <span style="margin-left:5.2em">{{ form.region(size=20, maxlength=50) }}
+          <br><br>Latitude: <span style="margin-left:4.85em">{{ form.lat(size=12, maxlength=12) }}
+          <br><br>Longitude: <span style="margin-left:4em">{{ form.lng(size=12, maxlength=12) }}
+          <br><br>SubType: <span style="margin-left:4.45em">{{ form.sub_type }}          
+          <br><br><strong><u>BLAST Thresholds</u></strong>
+          <br>Set Pident: <span style="margin-left:3.8em">{{ form.pident(size=5, maxlength=3) }}
+          <br>Set length/slength: <span style="margin-left:.4em">{{ form.len_slen(size=5, maxlength=5) }}</p>        
+          <br>
+              <p><b>Or search for a genome by name: {{ form.search(size=30, maxlength=400) }}</b></p>
+              
+          </tr>
+          <tr>
+              
+              <span style="margin-left:3em">{{ form.export_TSV }} Export to TSV 
+              {{ form.prokka_skip }} Skip PROKKA
+              {{ form.prokka_wait }} Wait for PROKKA (will add significantly more loading time)
+              <input type="submit" value="Submit">
+              </font>
+          </tr>
+      </table>
+  </form>
+
+
+{% endblock %}
