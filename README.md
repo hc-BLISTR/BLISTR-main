@@ -2,7 +2,7 @@
 
 ###BotuLinum In Silico Typing Resource (BLISTR)
 BLISTR is a browser app designed to assist with in silico analysis of 
-Clostridum Botulinum (Cbot) specimens. The app comes with a set up, 
+Clostridium Botulinum (Cbot) specimens. The app comes with a set up, 
 curated, database of around 300 Cbot specimens. You may edit the 
 database as you like in a user friendly fashion. When you upload a
 Cbot fasta file to the app, it will be added to the database and you
