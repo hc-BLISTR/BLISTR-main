@@ -1,6 +1,6 @@
-#README
+# README
 
-###BotuLinum In Silico Typing Resource (BLISTR)
+### BotuLinum In Silico Typing Resource (BLISTR)
 BLISTR is a browser app designed to assist with in silico analysis of 
 Clostridium Botulinum (Cbot) specimens. The app comes with a set up, 
 curated, database of around 300 Cbot specimens. You may edit the 
@@ -18,7 +18,7 @@ of [muscle](http://www.ncbi.nlm.nih.gov/pubmed/15034147), Fasta2Phylip.pl, and [
 Other features include map generation (which places markers on a world map based off the geographic
 location of the genomes) and 16S identification.
 
-###Installation
+### Installation
 Before installing this app, please run the following in your terminal:
 - `$ ARRAY=(prokka blastn blastp python2.7 psql git apt-get, pip)`
 - `$ for i in "${ARRAY[@]}";do;hash $i 2>/dev/null || { echo >&2 "$i" ;};done;`
@@ -38,7 +38,7 @@ instructions for which ever programs you are missing:
 - apt-get (available on the Ubuntu Software Centre as: apt)
 - pip (use the command: `$ sudo apt-get install python-pip`)
 
-#####Setting up PostgreSQL to work with BLISTR
+##### Setting up PostgreSQL to work with BLISTR
 Try the command: `$ psql` ; if you get this error message:
 ```
 psql: could not connect to server: No such file or directory
@@ -80,7 +80,7 @@ Then you likely need to change your authentication method temporarily. To do tha
 - `sudo service postgresql restart`
 After all that, you can continue with the previous list of commands (starting at `$ createdb BLISTR.db`).
 
-####Installing BLISTR
+#### Installing BLISTR
 Once all the above installations are done, you can either git clone the
 BLISTR-main directory or you can use installer.py to do everything.
 Select one of the two following options:
@@ -91,7 +91,7 @@ see red text, try to install that python library yourself (and then remove it fr
 you can open with `$ gedit ../requirements.txt`) and then try the `sudo pip install -r ../requirements.txt`
 command again)
 
-#####Option 1: Using Only installer.py
+##### Option 1: Using Only installer.py
 You will need to pip install all the requirements in requirements.txt.
 To do that, open a terminal where you would like BLISTR to be installed in and type:
 - `$ curl -o ../requirements.txt https://raw.githubusercontent.com/hc-BLISTR/BLISTR-main/master/requirements.txt`
@@ -108,7 +108,7 @@ from which you plan to upload fasta files to BLISTR (this is optional, exclude
 "-u paths/to/upload_folders" if you are happy uploading fasta files from
 the "fasta_files" directory in BLISTR's code).
 
-#####Option 2: Git Cloning
+##### Option 2: Git Cloning
 cd into the empty directory where you would like to install BLISTR
 - Git clone this repository: `$ git clone https://github.com/hc-BLISTR/BLISTR-main.git .` (don't forget the period)
 - Pip install requirements: `$ sudo pip install -r requirements.txt` (when prompted enter your administrative password)
@@ -119,7 +119,7 @@ from which you plan to upload fasta files to BLISTR (this is optional, exclude
 "-u paths/to/upload_folders" if you are happy uploading fasta files from
 the "fasta_files" directory in BLISTR's code).
 
-###Running BLISTR
+### Running BLISTR
 Now that BLISTR is installed to run it, cd into the root directory of 
 BLISTR (likely the one named "BLISTR") and type in your terminal:
 `$ python views.py` (or `$ python path/to/views.py` from any working directory)
@@ -136,7 +136,7 @@ refreshing the page, if that does not work, check to see if views.py is running.
 After that BLISTR should be up and running. You should be able to upload fasta
 files from which ever directories you set as valid (the ones following the "-u" flag)
 
-####Errors
+#### Errors
 If BLISTR is not running (or only some of the pages on the app are running) then you likely
 have some out of date python extensions. To determine if this is the case, run the program
 `$ python in_sync.py` (in the `BLISTR_support_programs` directory). If you get multiple outputs that are out of sync, then you can either
@@ -146,7 +146,7 @@ If you are having issues running any of BLISTR's sub programs (such as prokka)
 and yet you have installed them, I would recommend reading this forum:
 http://unix.stackexchange.com/questions/3809/how-can-i-make-a-program-executable-from-everywhere
 
-###Backend Database Manipulations
+### Backend Database Manipulations
 If you are a tech savvy go-getter who would like to preform database manipulations through the 
 backend (perhaps to debug some of your personal add-ons or just to try some SQLAlchemy out) 
 then this is how you can get started...
@@ -193,7 +193,7 @@ Change the subtype of the toxin "E-RUSS":
 To see how new entries are added to the database, I would recommend looking at the code in
 the file `/Database_Inputs/uploader.py`
 
-###Why This Was Made
+### Why This Was Made
 BLISTR was made for Health Canada (Bureau of Microbial Hazards/Food Directorate) as a way to help 
 employees with biological knowledge of Clostridium Botulinum but without a great deal of computing
 knowledge. Hence the user friendly interface and, I hope, easy enough installation. Unfortunately,
@@ -201,7 +201,7 @@ due to the great glories of bureaucracy, this app is only available on your comp
 and not on an independent website. Perhaps one day this app will achieve the unthinkable and get its
 own website, but I see this as unlikely. 
 
-###Contributors
+### Contributors
 Almost the entirety of this app was developed by Owen Neuber (owenneuber@outlook.com). He is a University
 of Waterloo nanotechnology engineering student who worked at Health Canada for a work term. If you would
 like to hire him for a work term, please feel free to contact him via email.
@@ -212,7 +212,7 @@ A fair bit of support (and some code) was from Peter Kruczkiewicz (peter.kruczki
 who created the [Salmonella In Silico Typing Resource (SISTR)](https://lfz.corefacility.ca/sistr-app/),
  a similar app. See Peter's code at his [bitbucket repository](https://bitbucket.org/peterk87/).
 
-###Other People's Code
+### Other People's Code
 - The tables are sortable by [sorttable.js](http://www.kryogenix.org/code/browser/sorttable/)
 - My maps page was made off the backbone of Saul Burgos' [easyLocator](https://github.com/SaulBurgos/easyLocator) (which itself uses [markerclusterer.js](https://github.com/googlemaps/js-marker-clusterer))
 - Also some basic table style css and instructions on converting .xlsx files to html from [sarahleejane.github.io](https://sarahleejane.github.io/learning/python/2015/08/09/simple-tables-in-webapps-using-flask-and-pandas-with-python.html)
