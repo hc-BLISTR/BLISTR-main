@@ -1,6 +1,6 @@
-#README
+# README
 
-##Uploading fasta files to the database through the backend
+## Uploading fasta files to the database through the backend
 If you have multiple fasta files, say over 5 you would like to add to the database all at once,
 or say you want to clean out the database of all the stuff you added and go back to older more reliable
 stuff then look no further than `db_loader.py`. For help with its usages (and there are many), enter `$ python db_loader.py -h`
@@ -21,18 +21,18 @@ regional entry but no latitude nor longitude entries, then you can run the progr
 in the `BLISTR_support_programs` directory). This program will edit all the contig headers to put in you country/region's
 latitude and longitude information (which the program determines itself).
 
-####Uploading only new entries
+#### Uploading only new entries
 If you wish to upload new entries to the BLISTR database (while not remaking the thing from scratch) simply run 
 `$ python db_loader.py -u` after having your fasta files meet the above requirements and re in the `~/BLISTR/fasta_files` directory.
 
-####New database from scratch
+#### New database from scratch
 If you wish to destroy and the recreate the BLISTR database with the fasta files in the directory `~/BLISTR/fasta_files` 
 then simply run `$ python db_loader.py`
 
-####Database Backup
+#### Database Backup
 To back up your current BLISTR database  run `$ python db_loader.py -s`
 
-####Restore database from a previous backup
+#### Restore database from a previous backup
 To restore your database from a past database backup, run `$ python db_loader.py -r` to restore to the most recent
 database backup. Alternatively, you can use `$ python db_loader.py -l path/to/past_backup` to select which backup 
 you would like to load BLISTR from.
